@@ -11,6 +11,8 @@ Services:
   - sustainability_engine: Scores, impact metrics, what-if simulation
 """
 
+import os
+
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
@@ -185,16 +187,9 @@ def api_chat(q: ChatQuery):
 
 # --- Static Files (serves React build) ---
 
-import os
 if os.path.exists("frontend/dist"):
     app.mount("/assets", StaticFiles(directory="frontend/dist/assets"), name="assets")
 
     @app.get("/{full_path:path}")
     def serve_react(full_path: str):
         return FileResponse("frontend/dist/index.html")
-elif os.path.exists("static"):
-    app.mount("/static", StaticFiles(directory="static"), name="static")
-
-    @app.get("/")
-    def serve_fallback():
-        return FileResponse("static/index.html")
