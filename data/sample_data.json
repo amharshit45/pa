@@ -1,0 +1,122 @@
+[
+  {
+    "name": "Fair-Trade Coffee Beans",
+    "category": "Perishable",
+    "quantity": 12,
+    "unit": "kg",
+    "expiry_date": "2026-04-15",
+    "daily_usage_rate": 2.5,
+    "cost_per_unit": 18.50,
+    "supplier": "Green Bean Co-op",
+    "is_eco_certified": true,
+    "notes": "Organic, shade-grown"
+  },
+  {
+    "name": "Oat Milk",
+    "category": "Perishable",
+    "quantity": 24,
+    "unit": "cartons",
+    "expiry_date": "2026-04-01",
+    "daily_usage_rate": 4.0,
+    "cost_per_unit": 3.25,
+    "supplier": "Oatly Local Distributor",
+    "is_eco_certified": true,
+    "notes": "Plant-based alternative"
+  },
+  {
+    "name": "Paper Cups (Compostable)",
+    "category": "Supplies",
+    "quantity": 500,
+    "unit": "pieces",
+    "expiry_date": null,
+    "daily_usage_rate": 45.0,
+    "cost_per_unit": 0.12,
+    "supplier": "EcoPack Solutions",
+    "is_eco_certified": true,
+    "notes": "PLA-lined, commercially compostable"
+  },
+  {
+    "name": "Napkins (Recycled)",
+    "category": "Supplies",
+    "quantity": 1000,
+    "unit": "pieces",
+    "expiry_date": null,
+    "daily_usage_rate": 80.0,
+    "cost_per_unit": 0.03,
+    "supplier": "EcoPack Solutions",
+    "is_eco_certified": true,
+    "notes": "100% post-consumer recycled"
+  },
+  {
+    "name": "Almond Croissants",
+    "category": "Perishable",
+    "quantity": 30,
+    "unit": "pieces",
+    "expiry_date": "2026-03-20",
+    "daily_usage_rate": 15.0,
+    "cost_per_unit": 2.80,
+    "supplier": "Local Artisan Bakery",
+    "is_eco_certified": false,
+    "notes": "Delivered fresh daily"
+  },
+  {
+    "name": "Cleaning Spray (Eco)",
+    "category": "Supplies",
+    "quantity": 8,
+    "unit": "bottles",
+    "expiry_date": "2027-01-01",
+    "daily_usage_rate": 0.3,
+    "cost_per_unit": 6.99,
+    "supplier": "GreenClean Wholesale",
+    "is_eco_certified": true,
+    "notes": "Biodegradable, plant-based formula"
+  },
+  {
+    "name": "Whole Milk",
+    "category": "Perishable",
+    "quantity": 15,
+    "unit": "liters",
+    "expiry_date": "2026-03-25",
+    "daily_usage_rate": 5.0,
+    "cost_per_unit": 1.80,
+    "supplier": "Valley Dairy Farm",
+    "is_eco_certified": false,
+    "notes": "Local farm, non-organic"
+  },
+  {
+    "name": "Sugar (Organic)",
+    "category": "Perishable",
+    "quantity": 20,
+    "unit": "kg",
+    "expiry_date": "2027-06-01",
+    "daily_usage_rate": 1.5,
+    "cost_per_unit": 4.50,
+    "supplier": "Fair Sugar Trade",
+    "is_eco_certified": true,
+    "notes": "Fairtrade certified"
+  },
+  {
+    "name": "Lab Gloves (Nitrile)",
+    "category": "Equipment",
+    "quantity": 200,
+    "unit": "pairs",
+    "expiry_date": "2028-12-01",
+    "daily_usage_rate": 10.0,
+    "cost_per_unit": 0.25,
+    "supplier": "MedSupply Eco",
+    "is_eco_certified": false,
+    "notes": "Powder-free, recyclable packaging"
+  },
+  {
+    "name": "Printer Paper (Recycled)",
+    "category": "Supplies",
+    "quantity": 5,
+    "unit": "reams",
+    "expiry_date": null,
+    "daily_usage_rate": 0.2,
+    "cost_per_unit": 8.99,
+    "supplier": "Office Green",
+    "is_eco_certified": true,
+    "notes": "80% post-consumer, FSC certified"
+  }
+]

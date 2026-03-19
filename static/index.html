@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Green-Tech Inventory Co-Pilot</title>
+<style>
+  :root { --green: #2d6a4f; --light-green: #95d5b2; --bg: #f0f7f4; --danger: #d62828; --warn: #f77f00; --ok: #2d6a4f; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: #333; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+  header { background: var(--green); color: white; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; }
+  header h1 { font-size: 1.4rem; }
+  .tabs { display: flex; gap: 8px; margin: 20px 0; flex-wrap: wrap; }
+  .tab { padding: 8px 18px; border: 2px solid var(--green); border-radius: 6px; cursor: pointer; background: white; color: var(--green); font-weight: 600; }
+  .tab.active { background: var(--green); color: white; }
+  .card { background: white; border-radius: 8px; padding: 20px; margin-bottom: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+  .controls { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
+  .controls input, .controls select { padding: 8px 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px; }
+  .controls input[type="text"] { flex: 1; min-width: 200px; }
+  button { padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 14px; }
+  .btn-primary { background: var(--green); color: white; }
+  .btn-primary:hover { background: #1b4332; }
+  .btn-danger { background: var(--danger); color: white; }
+  .btn-sm { padding: 4px 10px; font-size: 12px; }
+  table { width: 100%; border-collapse: collapse; }
+  th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid #eee; font-size: 14px; }
+  th { background: #f8f9fa; font-weight: 600; color: #555; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: 700; }
+  .badge-critical { background: #fde2e2; color: var(--danger); }
+  .badge-warning { background: #fff3cd; color: #856404; }
+  .badge-ok { background: #d4edda; color: var(--ok); }
+  .badge-eco { background: var(--light-green); color: var(--green); }
+  .badge-unknown { background: #e2e3e5; color: #383d41; }
+  .score-ring { width: 120px; height: 120px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 700; margin: 0 auto 12px; }
+  .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; z-index: 100; }
+  .modal { background: white; border-radius: 10px; padding: 24px; width: 480px; max-width: 95vw; max-height: 90vh; overflow-y: auto; }
+  .modal h2 { margin-bottom: 16px; }
+  .form-group { margin-bottom: 12px; }
+  .form-group label { display: block; font-weight: 600; margin-bottom: 4px; font-size: 13px; }
+  .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px; }
+  .form-row { display: flex; gap: 12px; }
+  .form-row .form-group { flex: 1; }
+  .prediction-card { border-left: 4px solid; padding: 12px 16px; margin-bottom: 10px; border-radius: 0 6px 6px 0; background: white; }
+  .prediction-card.critical { border-color: var(--danger); }
+  .prediction-card.warning { border-color: var(--warn); }
+  .prediction-card.ok { border-color: var(--ok); }
+  .prediction-card.unknown { border-color: #adb5bd; }
+  .stats-row { display: flex; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; }
+  .stat-card { flex: 1; min-width: 140px; text-align: center; }
+  .stat-card .num { font-size: 2rem; font-weight: 700; color: var(--green); }
+  .stat-card .label { font-size: 12px; color: #777; }
+  .hidden { display: none; }
+  .error { color: var(--danger); font-size: 13px; margin-top: 4px; }
+  .loading { text-align: center; padding: 40px; color: #888; }
+  /* Chat styles */
+  .chat-container { display: flex; flex-direction: column; height: 500px; }
+  .chat-messages { flex: 1; overflow-y: auto; padding: 16px; background: #fafafa; border-radius: 8px; margin-bottom: 12px; }
+  .chat-msg { margin-bottom: 12px; padding: 10px 14px; border-radius: 10px; max-width: 85%; line-height: 1.5; font-size: 14px; }
+  .chat-msg.user { background: var(--green); color: white; margin-left: auto; }
+  .chat-msg.bot { background: white; border: 1px solid #ddd; }
+  .chat-msg .actions-list { margin-top: 8px; padding-left: 18px; }
+  .chat-msg .actions-list li { margin-bottom: 4px; }
+  .chat-input { display: flex; gap: 8px; }
+  .chat-input input { flex: 1; padding: 10px 14px; border: 2px solid #ccc; border-radius: 8px; font-size: 14px; }
+  .chat-input input:focus { border-color: var(--green); outline: none; }
+  .suggestion-chips { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+  .chip { padding: 6px 12px; border: 1px solid var(--green); border-radius: 20px; font-size: 12px; cursor: pointer; background: white; color: var(--green); }
+  .chip:hover { background: var(--light-green); }
+  /* What-If styles */
+  .whatif-result { margin-top: 16px; }
+  .delta-positive { color: var(--ok); font-weight: 700; }
+  .delta-negative { color: var(--danger); font-weight: 700; }
+  .delta-neutral { color: #666; }
+  .comparison-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-top: 12px; }
+  .comparison-grid .metric { text-align: center; padding: 12px; border-radius: 8px; background: #f8f9fa; }
+  .comparison-grid .metric .value { font-size: 1.3rem; font-weight: 700; }
+  .comparison-grid .metric .label { font-size: 11px; color: #777; margin-top: 4px; }
+  .comparison-grid .metric .delta { font-size: 13px; margin-top: 4px; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Green-Tech Inventory Co-Pilot</h1>
+  <span id="sustainability-badge" style="font-size: 14px; cursor: pointer;" onclick="showTab('sustainability')" title="Sustainability Score"></span>
+</header>
+
+<div class="container">
+  <div class="tabs" id="tab-bar">
+    <div class="tab active" onclick="showTab('copilot')">Co-Pilot</div>
+    <div class="tab" onclick="showTab('inventory')">Inventory</div>
+    <div class="tab" onclick="showTab('whatif')">What-If</div>
+    <div class="tab" onclick="showTab('predictions')">Predictions</div>
+    <div class="tab" onclick="showTab('sustainability')">Sustainability</div>
+  </div>
+
+  <!-- CO-PILOT TAB -->
+  <div id="tab-copilot">
+    <div class="card">
+      <h2 style="margin-bottom: 12px;">Sustainability Co-Pilot</h2>
+      <p style="color:#666; font-size:13px; margin-bottom:12px;">Ask questions about your inventory, waste reduction, costs, or sustainability. Try the suggestions below or type your own.</p>
+      <div class="suggestion-chips" id="chat-suggestions">
+        <span class="chip" onclick="sendChat('How can I reduce waste this week?')">Reduce waste</span>
+        <span class="chip" onclick="sendChat('What items are running low?')">Low stock alerts</span>
+        <span class="chip" onclick="sendChat('How can I improve our sustainability score?')">Improve sustainability</span>
+        <span class="chip" onclick="sendChat('Give me a cost overview')">Cost overview</span>
+        <span class="chip" onclick="sendChat('Summary of inventory status')">Status summary</span>
+      </div>
+      <div class="chat-container">
+        <div class="chat-messages" id="chat-messages">
+          <div class="chat-msg bot">Welcome! I'm your sustainability co-pilot. Ask me about waste reduction, stock levels, costs, or sustainability improvements.</div>
+        </div>
+        <div class="chat-input">
+          <input type="text" id="chat-input" placeholder="Ask: 'How can I reduce waste?' or 'What's running low?'" onkeydown="if(event.key==='Enter')sendChatFromInput()">
+          <button class="btn-primary" onclick="sendChatFromInput()">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INVENTORY TAB -->
+  <div id="tab-inventory" class="hidden">
+    <div class="controls">
+      <input type="text" id="search" placeholder="Search items or suppliers..." oninput="debounceLoad()">
+      <select id="category-filter" onchange="loadItems()">
+        <option value="">All Categories</option>
+      </select>
+      <button class="btn-primary" onclick="openAddModal()">+ Add Item</button>
+    </div>
+    <div class="card">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Qty</th>
+            <th>Expiry</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="items-body">
+          <tr><td colspan="6" class="loading">Loading...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- WHAT-IF TAB -->
+  <div id="tab-whatif" class="hidden">
+    <div class="card">
+      <h2>What-If Scenario Simulator</h2>
+      <p style="color:#666; font-size:13px; margin-bottom:16px;">Model procurement changes and see the impact on waste, cost, and carbon footprint before making decisions.</p>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Scenario</label>
+          <select id="whatif-action" onchange="updateWhatIfUI()">
+            <option value="reduce_usage">Reduce item usage</option>
+            <option value="reduce_order">Reduce order quantity</option>
+            <option value="switch_eco">Switch to eco-certified supplier</option>
+            <option value="all_eco">Switch ALL items to eco-certified</option>
+          </select>
+        </div>
+        <div class="form-group" id="whatif-item-group">
+          <label>Item</label>
+          <select id="whatif-item"></select>
+        </div>
+        <div class="form-group" id="whatif-pct-group">
+          <label>Reduction %</label>
+          <input type="number" id="whatif-pct" value="20" min="1" max="100">
+        </div>
+      </div>
+      <button class="btn-primary" onclick="runWhatIf()">Run Simulation</button>
+      <div id="whatif-result" class="whatif-result"></div>
+    </div>
+  </div>
+
+  <!-- PREDICTIONS TAB -->
+  <div id="tab-predictions" class="hidden">
+    <div class="stats-row" id="prediction-stats"></div>
+    <div id="predictions-list"><div class="loading">Loading predictions...</div></div>
+  </div>
+
+  <!-- SUSTAINABILITY TAB -->
+  <div id="tab-sustainability" class="hidden">
+    <div class="card" style="text-align:center;">
+      <h2>Sustainability Impact Score</h2>
+      <div id="score-display"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ADD/EDIT MODAL -->
+<div id="modal" class="modal-overlay hidden" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <h2 id="modal-title">Add Item</h2>
+    <form id="item-form" onsubmit="saveItem(event)">
+      <input type="hidden" id="form-id">
+      <div class="form-group">
+        <label>Name *</label>
+        <input type="text" id="form-name" required maxlength="200">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Category</label>
+          <select id="form-category">
+            <option>Perishable</option><option>Supplies</option><option>Equipment</option><option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Unit</label>
+          <input type="text" id="form-unit" value="pieces">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Quantity *</label>
+          <input type="number" id="form-quantity" required min="0" step="any">
+        </div>
+        <div class="form-group">
+          <label>Cost/Unit</label>
+          <input type="number" id="form-cost" min="0" step="0.01" value="0">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Expiry Date</label>
+          <input type="date" id="form-expiry">
+        </div>
+        <div class="form-group">
+          <label>Daily Usage Rate</label>
+          <input type="number" id="form-usage" min="0" step="any" value="0">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Supplier</label>
+        <input type="text" id="form-supplier">
+      </div>
+      <div class="form-group">
+        <label><input type="checkbox" id="form-eco"> Eco-Certified</label>
+      </div>
+      <div class="form-group">
+        <label>Notes</label>
+        <textarea id="form-notes" rows="2"></textarea>
+      </div>
+      <div id="form-error" class="error hidden"></div>
+      <div style="display:flex; gap:10px; margin-top:16px;">
+        <button type="submit" class="btn-primary">Save</button>
+        <button type="button" onclick="closeModal()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+const API = '/api';
+const TAB_NAMES = ['copilot','inventory','whatif','predictions','sustainability'];
+let debounceTimer;
+let cachedItems = [];
+
+function debounceLoad() {
+  clearTimeout(debounceTimer);
+  debounceTimer = setTimeout(loadItems, 300);
+}
+
+async function api(path, opts = {}) {
+  const res = await fetch(API + path, {
+    headers: { 'Content-Type': 'application/json' },
+    ...opts,
+  });
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({ detail: 'Request failed' }));
+    throw new Error(err.detail || JSON.stringify(err));
+  }
+  return res.json();
+}
+
+// --- Load Items ---
+async function loadItems() {
+  const search = document.getElementById('search').value;
+  const category = document.getElementById('category-filter').value;
+  const params = new URLSearchParams();
+  if (search) params.set('search', search);
+  if (category) params.set('category', category);
+  try {
+    const data = await api(`/items?${params}`);
+    cachedItems = data.items;
+    renderItems(data.items);
+  } catch (e) {
+    document.getElementById('items-body').innerHTML = `<tr><td colspan="6" class="error">${e.message}</td></tr>`;
+  }
+}
+
+async function loadAllItems() {
+  try {
+    const data = await api('/items');
+    cachedItems = data.items;
+    populateWhatIfItems();
+  } catch(e) {}
+}
+
+function renderItems(items) {
+  const tbody = document.getElementById('items-body');
+  if (!items.length) {
+    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:#888;">No items found</td></tr>';
+    return;
+  }
+  tbody.innerHTML = items.map(i => {
+    const pred = quickPredict(i);
+    return `<tr>
+      <td><strong>${esc(i.name)}</strong>${i.is_eco_certified ? ' <span class="badge badge-eco">ECO</span>' : ''}<br><small style="color:#888">${esc(i.supplier)}</small></td>
+      <td>${esc(i.category)}</td>
+      <td>${i.quantity} ${esc(i.unit)}</td>
+      <td>${i.expiry_date || '-'}</td>
+      <td><span class="badge badge-${pred.urgency}">${pred.urgency}</span></td>
+      <td>
+        <button class="btn-sm btn-primary" onclick="openEditModal(${i.id})">Edit</button>
+        <button class="btn-sm" onclick="openPrediction(${i.id})" title="Forecast">Predict</button>
+        <button class="btn-sm btn-danger" onclick="deleteItem(${i.id})">Del</button>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+function quickPredict(item) {
+  const rate = item.daily_usage_rate || 0;
+  const qty = item.quantity || 0;
+  let urgency = 'ok';
+  if (rate > 0) {
+    const days = Math.floor(qty / rate);
+    if (days <= 2) urgency = 'critical';
+    else if (days <= 7) urgency = 'warning';
+  }
+  if (item.expiry_date) {
+    const daysExp = Math.floor((new Date(item.expiry_date) - new Date()) / 86400000);
+    if (daysExp < 0) urgency = 'critical';
+    else if (daysExp <= 3) urgency = 'critical';
+    else if (daysExp <= 7 && urgency !== 'critical') urgency = 'warning';
+  }
+  if (rate === 0 && !item.expiry_date) urgency = 'unknown';
+  return { urgency };
+}
+
+// --- Categories ---
+async function loadCategories() {
+  try {
+    const cats = await api('/categories');
+    const sel = document.getElementById('category-filter');
+    sel.innerHTML = '<option value="">All Categories</option>';
+    cats.forEach(c => {
+      const opt = document.createElement('option');
+      opt.value = c; opt.textContent = c;
+      sel.appendChild(opt);
+    });
+  } catch (e) {}
+}
+
+// --- CRUD ---
+function openAddModal() {
+  document.getElementById('modal-title').textContent = 'Add Item';
+  document.getElementById('form-id').value = '';
+  document.getElementById('item-form').reset();
+  document.getElementById('form-error').classList.add('hidden');
+  document.getElementById('modal').classList.remove('hidden');
+}
+
+async function openEditModal(id) {
+  try {
+    const item = await api(`/items/${id}`);
+    document.getElementById('modal-title').textContent = 'Edit Item';
+    document.getElementById('form-id').value = item.id;
+    document.getElementById('form-name').value = item.name;
+    document.getElementById('form-category').value = item.category;
+    document.getElementById('form-quantity').value = item.quantity;
+    document.getElementById('form-unit').value = item.unit;
+    document.getElementById('form-cost').value = item.cost_per_unit;
+    document.getElementById('form-expiry').value = item.expiry_date || '';
+    document.getElementById('form-usage').value = item.daily_usage_rate;
+    document.getElementById('form-supplier').value = item.supplier;
+    document.getElementById('form-eco').checked = !!item.is_eco_certified;
+    document.getElementById('form-notes').value = item.notes;
+    document.getElementById('form-error').classList.add('hidden');
+    document.getElementById('modal').classList.remove('hidden');
+  } catch (e) { alert(e.message); }
+}
+
+function closeModal() { document.getElementById('modal').classList.add('hidden'); }
+
+async function saveItem(e) {
+  e.preventDefault();
+  const id = document.getElementById('form-id').value;
+  const body = {
+    name: document.getElementById('form-name').value.trim(),
+    category: document.getElementById('form-category').value,
+    quantity: parseFloat(document.getElementById('form-quantity').value),
+    unit: document.getElementById('form-unit').value.trim(),
+    cost_per_unit: parseFloat(document.getElementById('form-cost').value) || 0,
+    expiry_date: document.getElementById('form-expiry').value || null,
+    daily_usage_rate: parseFloat(document.getElementById('form-usage').value) || 0,
+    supplier: document.getElementById('form-supplier').value.trim(),
+    is_eco_certified: document.getElementById('form-eco').checked,
+    notes: document.getElementById('form-notes').value.trim(),
+  };
+  if (!body.name) { showFormError('Name is required'); return; }
+  if (isNaN(body.quantity) || body.quantity < 0) { showFormError('Quantity must be >= 0'); return; }
+  try {
+    if (id) {
+      await api(`/items/${id}`, { method: 'PUT', body: JSON.stringify(body) });
+    } else {
+      await api('/items', { method: 'POST', body: JSON.stringify(body) });
+    }
+    closeModal();
+    loadItems();
+    loadCategories();
+    loadAllItems();
+  } catch (e) { showFormError(e.message); }
+}
+
+function showFormError(msg) {
+  const el = document.getElementById('form-error');
+  el.textContent = msg; el.classList.remove('hidden');
+}
+
+async function deleteItem(id) {
+  if (!confirm('Delete this item?')) return;
+  try { await api(`/items/${id}`, { method: 'DELETE' }); loadItems(); loadAllItems(); }
+  catch (e) { alert(e.message); }
+}
+
+// --- Co-Pilot Chat ---
+function sendChatFromInput() {
+  const input = document.getElementById('chat-input');
+  const q = input.value.trim();
+  if (!q) return;
+  input.value = '';
+  sendChat(q);
+}
+
+async function sendChat(query) {
+  const messages = document.getElementById('chat-messages');
+  messages.innerHTML += `<div class="chat-msg user">${esc(query)}</div>`;
+  messages.innerHTML += `<div class="chat-msg bot" id="chat-loading" style="color:#888">Thinking...</div>`;
+  messages.scrollTop = messages.scrollHeight;
+
+  try {
+    const data = await api('/chat', { method: 'POST', body: JSON.stringify({ query }) });
+    document.getElementById('chat-loading').remove();
+
+    let html = `<div class="chat-msg bot"><strong>${esc(data.answer)}</strong>`;
+    if (data.actions && data.actions.length) {
+      html += '<ul class="actions-list">';
+      data.actions.forEach(a => html += `<li>${esc(a)}</li>`);
+      html += '</ul>';
+    }
+    if (data.waste_items && data.waste_items.length) {
+      html += '<div style="margin-top:8px; font-size:13px;">';
+      data.waste_items.forEach(w => {
+        html += `<div style="margin:4px 0; padding:4px 8px; background:#fff8f0; border-radius:4px;">${esc(w.name)}: ${w.wasted_qty} ${esc(w.unit)} at risk ($${w.wasted_cost})</div>`;
+      });
+      html += '</div>';
+    }
+    if (data.suggestions) {
+      html += '<div style="margin-top:8px; display:flex; gap:4px; flex-wrap:wrap;">';
+      data.suggestions.forEach(s => {
+        html += `<span class="chip" onclick="sendChat('${esc(s)}')">${esc(s)}</span>`;
+      });
+      html += '</div>';
+    }
+    html += '</div>';
+    messages.innerHTML += html;
+  } catch (e) {
+    document.getElementById('chat-loading').remove();
+    messages.innerHTML += `<div class="chat-msg bot" style="color:var(--danger)">Error: ${esc(e.message)}</div>`;
+  }
+  messages.scrollTop = messages.scrollHeight;
+}
+
+// --- What-If Simulator ---
+function populateWhatIfItems() {
+  const sel = document.getElementById('whatif-item');
+  sel.innerHTML = '';
+  cachedItems.forEach(i => {
+    const opt = document.createElement('option');
+    opt.value = i.id;
+    opt.textContent = `${i.name} (${i.quantity} ${i.unit})`;
+    sel.appendChild(opt);
+  });
+}
+
+function updateWhatIfUI() {
+  const action = document.getElementById('whatif-action').value;
+  const itemGroup = document.getElementById('whatif-item-group');
+  const pctGroup = document.getElementById('whatif-pct-group');
+  itemGroup.style.display = action === 'all_eco' ? 'none' : '';
+  pctGroup.style.display = (action === 'switch_eco' || action === 'all_eco') ? 'none' : '';
+}
+
+async function runWhatIf() {
+  const action = document.getElementById('whatif-action').value;
+  const item_id = parseInt(document.getElementById('whatif-item').value);
+  const reduce_pct = parseFloat(document.getElementById('whatif-pct').value) || 20;
+
+  const body = { action, reduce_pct };
+  if (action !== 'all_eco') body.item_id = item_id;
+
+  try {
+    const r = await api('/what-if', { method: 'POST', body: JSON.stringify(body) });
+    renderWhatIfResult(r);
+  } catch (e) {
+    document.getElementById('whatif-result').innerHTML = `<div class="error">${esc(e.message)}</div>`;
+  }
+}
+
+function renderWhatIfResult(r) {
+  const d = r.delta;
+  const fmt = (v, invert) => {
+    if (v === 0) return `<span class="delta-neutral">No change</span>`;
+    const better = invert ? v > 0 : v < 0;
+    const cls = better ? 'delta-positive' : 'delta-negative';
+    const sign = v > 0 ? '+' : '';
+    return `<span class="${cls}">${sign}${typeof v === 'number' && !Number.isInteger(v) ? v.toFixed(2) : v}</span>`;
+  };
+
+  document.getElementById('whatif-result').innerHTML = `
+    <div class="card" style="margin-top:16px; border-left: 4px solid var(--green);">
+      <h3 style="margin-bottom:12px;">Scenario: ${esc(r.scenario)}</h3>
+      <div class="comparison-grid">
+        <div class="metric">
+          <div class="label">Weekly Waste Cost</div>
+          <div class="value">$${r.projected.estimated_weekly_waste_cost}</div>
+          <div class="delta">${fmt(d.waste_cost_change, false)}</div>
+        </div>
+        <div class="metric">
+          <div class="label">Eco-Certified %</div>
+          <div class="value">${r.projected.eco_pct}%</div>
+          <div class="delta">${fmt(d.eco_pct_change, true)}${d.eco_pct_change ? '%' : ''}</div>
+        </div>
+        <div class="metric">
+          <div class="label">Carbon Score</div>
+          <div class="value">${r.projected.carbon_score}/100</div>
+          <div class="delta">${fmt(d.carbon_score_change, true)}</div>
+        </div>
+      </div>
+      <div class="comparison-grid" style="margin-top:8px;">
+        <div class="metric">
+          <div class="label">Weekly Procurement</div>
+          <div class="value">$${r.projected.weekly_procurement_cost}</div>
+          <div class="delta">${fmt(d.weekly_cost_change, false)}</div>
+        </div>
+        <div class="metric">
+          <div class="label">Waste Risk Items</div>
+          <div class="value">${r.projected.waste_risk_items.length}</div>
+          <div class="delta">${r.projected.waste_risk_items.length} items</div>
+        </div>
+        <div class="metric">
+          <div class="label">Baseline Carbon</div>
+          <div class="value">${r.baseline.carbon_score}/100</div>
+          <div class="delta">before change</div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+// --- Predictions ---
+async function loadPredictions() {
+  try {
+    const data = await api('/predictions');
+    document.getElementById('prediction-stats').innerHTML = `
+      <div class="stat-card card"><div class="num">${data.predictions.length}</div><div class="label">Total Items</div></div>
+      <div class="stat-card card"><div class="num" style="color:var(--danger)">${data.critical_count}</div><div class="label">Critical</div></div>
+      <div class="stat-card card"><div class="num" style="color:var(--warn)">${data.warning_count}</div><div class="label">Warnings</div></div>
+    `;
+    const sorted = data.predictions.sort((a, b) => {
+      const order = { critical: 0, warning: 1, ok: 2, unknown: 3 };
+      return (order[a.urgency] ?? 3) - (order[b.urgency] ?? 3);
+    });
+    document.getElementById('predictions-list').innerHTML = sorted.map(p => `
+      <div class="prediction-card ${p.urgency}">
+        <strong>${esc(p.item)}</strong> <span class="badge badge-${p.urgency}">${p.urgency}</span>
+        <span class="badge" style="background:#e8e8e8">${p.method}</span>
+        <p style="margin-top:6px">${esc(p.recommendation)}</p>
+        ${p.expiry_warning ? `<p style="color:var(--warn);font-size:13px">${esc(p.expiry_warning)}</p>` : ''}
+        ${p.sustainability_tip ? `<p style="color:var(--green);font-size:13px">${esc(p.sustainability_tip)}</p>` : ''}
+        ${p.days_until_empty != null ? `<small>Days left: ${p.days_until_empty}${p.estimated_runout ? ' (runs out ~' + p.estimated_runout + ')' : ''}</small>` : ''}
+      </div>
+    `).join('');
+  } catch (e) {
+    document.getElementById('predictions-list').innerHTML = `<div class="error">${e.message}</div>`;
+  }
+}
+
+async function openPrediction(id) {
+  try {
+    const p = await api(`/items/${id}/predict`);
+    let msg = `${p.item} [${p.method}${p.model ? ' - ' + p.model : ''}]\n\nUrgency: ${p.urgency}\n${p.recommendation}`;
+    if (p.trend) msg += `\nTrend: ${p.trend} (${p.trend_pct > 0 ? '+' : ''}${p.trend_pct}%)`;
+    if (p.forecast_usage_rate) msg += `\nForecast usage: ${p.forecast_usage_rate}/day`;
+    if (p.sustainability_tip) msg += `\n${p.sustainability_tip}`;
+    if (p.expiry_warning) msg += `\n${p.expiry_warning}`;
+    msg += `\nDays left: ${p.days_until_empty ?? 'N/A'}`;
+    if (p.note) msg += `\n\nNote: ${p.note}`;
+    alert(msg);
+  } catch (e) { alert(e.message); }
+}
+
+// --- Sustainability ---
+async function loadSustainability() {
+  try {
+    const s = await api('/sustainability');
+    const color = s.overall_score >= 80 ? 'var(--ok)' : s.overall_score >= 60 ? 'var(--warn)' : 'var(--danger)';
+    document.getElementById('score-display').innerHTML = `
+      <div class="score-ring" style="border: 8px solid ${color}; color: ${color}">${s.overall_score}</div>
+      <p style="font-size:1.5rem;font-weight:700">Grade: ${s.grade}</p>
+      <div class="stats-row" style="margin-top:20px; justify-content:center;">
+        <div class="stat-card"><div class="num">${s.eco_certified_pct}%</div><div class="label">Eco-Certified</div></div>
+        <div class="stat-card"><div class="num">${s.eco_certified_count}/${s.total_items}</div><div class="label">Eco Items</div></div>
+        <div class="stat-card"><div class="num" style="color:${s.waste_risk_items > 0 ? 'var(--danger)' : 'var(--ok)'}">${s.waste_risk_items}</div><div class="label">Waste Risk Items</div></div>
+        <div class="stat-card"><div class="num">${s.waste_management_score}</div><div class="label">Waste Score</div></div>
+      </div>
+    `;
+    document.getElementById('sustainability-badge').textContent = `Score: ${s.overall_score} (${s.grade})`;
+  } catch (e) {
+    document.getElementById('score-display').innerHTML = `<div class="error">${e.message}</div>`;
+  }
+}
+
+// --- Tabs ---
+function showTab(name) {
+  const tabs = document.querySelectorAll('.tab');
+  tabs.forEach((t, i) => t.classList.toggle('active', TAB_NAMES[i] === name));
+  TAB_NAMES.forEach(t => document.getElementById('tab-' + t).classList.toggle('hidden', t !== name));
+  if (name === 'predictions') loadPredictions();
+  if (name === 'sustainability') loadSustainability();
+  if (name === 'whatif') { loadAllItems(); updateWhatIfUI(); }
+  if (name === 'inventory') loadItems();
+}
+
+function esc(s) { const d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; }
+
+// --- Init ---
+loadItems();
+loadCategories();
+loadSustainability();
+loadAllItems();
+</script>
+</body>
+</html>
