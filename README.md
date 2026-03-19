@@ -1,7 +1,9 @@
 # Green-Tech Inventory Co-Pilot
 
 **Candidate Name:** Harshit Goyal
+
 **Scenario Chosen:** Green-Tech Inventory Assistant
+
 **Estimated Time Spent:** ~5 hours
 
 An intelligent sustainability co-pilot for physical inventory that goes beyond tracking. It helps small businesses and community organizations **make better procurement decisions** by simulating the waste, cost, and carbon impact of changes before they happen.
