@@ -8,6 +8,22 @@ from database import get_db
 
 DAY_NAMES = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
 
+# Shelf life prediction constants
+CATEGORY_SHELF_LIFE = {"Perishable": 7, "Supplies": 365, "Equipment": 730}
+STORAGE_MULTIPLIERS = {"frozen": 3.0, "refrigerated": 1.0, "room_temp": 0.6, "warm": 0.3}
+STORAGE_MULTIPLIERS_NON_PERISHABLE = {"frozen": 1.0, "refrigerated": 1.0, "room_temp": 1.0, "warm": 0.9}
+
+# Forecast cache: {item_id: {"forecast": dict, "usage_count": int}}
+_forecast_cache = {}
+
+
+def invalidate_forecast_cache(item_id: int = None):
+    """Clear cached forecast for an item, or all items if item_id is None."""
+    if item_id is None:
+        _forecast_cache.clear()
+    else:
+        _forecast_cache.pop(item_id, None)
+
 
 def rule_based_prediction(item: dict) -> dict:
     """Simple math-based prediction using quantity / daily_usage_rate."""
@@ -36,6 +52,7 @@ def rule_based_prediction(item: dict) -> dict:
 
     _apply_expiry_check(result, expiry)
     _apply_sustainability_tip(result, item)
+    result["shelf_life"] = predict_shelf_life(item)
 
     return result
 
@@ -220,7 +237,15 @@ def local_forecast_prediction(item: dict) -> dict:
         except Exception:
             pass
 
-    forecast = holt_forecast(usage_history)
+    # Check forecast cache: hit if same item_id and same number of usage records
+    usage_count = len(usage_history)
+    cached = _forecast_cache.get(item_id) if item_id else None
+    if cached and cached["usage_count"] == usage_count:
+        forecast = cached["forecast"]
+    else:
+        forecast = holt_forecast(usage_history)
+        if forecast is not None and item_id:
+            _forecast_cache[item_id] = {"forecast": forecast, "usage_count": usage_count}
 
     if forecast is None:
         fallback = rule_based_prediction(item)
@@ -276,6 +301,7 @@ def local_forecast_prediction(item: dict) -> dict:
 
     _apply_expiry_check(result, expiry)
     _apply_sustainability_tip(result, item)
+    result["shelf_life"] = predict_shelf_life(item)
 
     return result
 
@@ -285,6 +311,66 @@ def predict_all(items: list) -> dict:
     critical = [p for p in predictions if p.get("urgency") == "critical"]
     warnings = [p for p in predictions if p.get("urgency") == "warning"]
     return {"predictions": predictions, "critical_count": len(critical), "warning_count": len(warnings)}
+
+
+def predict_shelf_life(item: dict) -> dict:
+    """Predict effective shelf life factoring in storage conditions and handling frequency."""
+    category = item.get("category", "Supplies")
+    storage = item.get("storage_condition", "room_temp")
+    expiry = item.get("expiry_date")
+    rate = item.get("daily_usage_rate", 0)
+    quantity = item.get("quantity", 0)
+
+    if expiry:
+        try:
+            nominal_days = (datetime.strptime(expiry, "%Y-%m-%d") - datetime.now()).days
+        except ValueError:
+            nominal_days = CATEGORY_SHELF_LIFE.get(category, 365)
+    else:
+        nominal_days = CATEGORY_SHELF_LIFE.get(category, 365)
+
+    base_shelf = max(nominal_days, 0)
+
+    if category == "Perishable":
+        storage_mult = STORAGE_MULTIPLIERS.get(storage, 1.0)
+    else:
+        storage_mult = STORAGE_MULTIPLIERS_NON_PERISHABLE.get(storage, 1.0)
+
+    handling_factor = 1.0
+    if category == "Perishable" and rate > 0 and quantity > 0:
+        access_ratio = min(rate / quantity, 1.0)
+        handling_factor = max(0.7, 1.0 - access_ratio * 0.3)
+
+    effective_days = max(0, round(base_shelf * storage_mult * handling_factor))
+
+    factors = {
+        "base_shelf_life_days": base_shelf,
+        "storage_condition": storage,
+        "storage_multiplier": storage_mult,
+        "handling_frequency_factor": round(handling_factor, 2),
+        "category": category,
+    }
+
+    if effective_days <= 0:
+        recommendation = "Item has no remaining effective shelf life. Use or discard immediately."
+    elif effective_days <= 3:
+        recommendation = f"Effective shelf life is only ~{effective_days} days due to storage/handling conditions. Prioritize use."
+    elif expiry and effective_days < nominal_days:
+        storage_advice = "refrigerating" if storage == "room_temp" and category == "Perishable" else "improving storage"
+        recommendation = (
+            f"Storage conditions reduce effective shelf life from {nominal_days} to ~{effective_days} days. "
+            f"Consider {storage_advice}."
+        )
+    else:
+        recommendation = f"Effective shelf life: ~{effective_days} days. Conditions are appropriate."
+
+    return {
+        "nominal_expiry_days": nominal_days if expiry else None,
+        "effective_shelf_life_days": effective_days,
+        "difference_days": effective_days - (nominal_days if nominal_days > 0 else base_shelf),
+        "factors": factors,
+        "recommendation": recommendation,
+    }
 
 
 def _apply_expiry_check(result: dict, expiry: Optional[str]):

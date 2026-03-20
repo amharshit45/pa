@@ -86,6 +86,18 @@ function BotMessage({ data, onSend }) {
           ))}
         </div>
       )}
+      {data.alternative_details?.length > 0 && (
+        <div style={{ marginTop: 8, fontSize: 13 }}>
+          <strong>Recommended alternatives:</strong>
+          {data.alternative_details.map((ad, i) => (
+            <div key={i} style={{ margin: '4px 0', padding: '4px 8px', background: '#e8f5e9', borderRadius: 4 }}>
+              <strong>{ad.current_item}</strong> →{' '}
+              {ad.alternatives[0]?.alternative_name} ({ad.alternatives[0]?.supplier},{' '}
+              ~{ad.alternatives[0]?.carbon_footprint_reduction_pct}% less carbon)
+            </div>
+          ))}
+        </div>
+      )}
       {data.suggestions && (
         <div style={{ marginTop: 8, display: 'flex', gap: 4, flexWrap: 'wrap' }}>
           {data.suggestions.map((s, i) => (

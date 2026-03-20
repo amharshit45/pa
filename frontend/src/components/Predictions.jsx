@@ -52,6 +52,25 @@ export default function Predictions() {
             <p style={{ color: '#7b2d8e', fontSize: 13 }}>{p.seasonality.description}</p>
           )}
           {p.expiry_warning && <p style={{ color: 'var(--warn)', fontSize: 13 }}>{p.expiry_warning}</p>}
+          {p.shelf_life && (
+            <div style={{ marginTop: 8, padding: '8px 12px', background: '#f0f8ff', borderRadius: 6, fontSize: 13 }}>
+              <strong>Shelf Life Prediction:</strong>{' '}
+              {p.shelf_life.nominal_expiry_days != null && (
+                <span>Nominal: {p.shelf_life.nominal_expiry_days}d | </span>
+              )}
+              <span>Effective: {p.shelf_life.effective_shelf_life_days}d</span>
+              {p.shelf_life.difference_days !== 0 && (
+                <span style={{ color: p.shelf_life.difference_days < 0 ? 'var(--danger)' : 'var(--ok)', marginLeft: 6 }}>
+                  ({p.shelf_life.difference_days > 0 ? '+' : ''}{p.shelf_life.difference_days}d)
+                </span>
+              )}
+              <p style={{ margin: '4px 0 0', color: '#555' }}>{p.shelf_life.recommendation}</p>
+              <small style={{ color: '#888' }}>
+                Storage: {p.shelf_life.factors.storage_condition} (x{p.shelf_life.factors.storage_multiplier}) |
+                Handling factor: {p.shelf_life.factors.handling_frequency_factor}
+              </small>
+            </div>
+          )}
           {p.sustainability_tip && <p style={{ color: 'var(--green)', fontSize: 13 }}>{p.sustainability_tip}</p>}
           {p.days_until_empty != null && (
             <small>

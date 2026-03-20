@@ -50,6 +50,7 @@ class ItemCreate(BaseModel):
     cost_per_unit: float = Field(default=0, ge=0)
     supplier: str = Field(default="")
     is_eco_certified: bool = False
+    storage_condition: str = Field(default="room_temp")
     notes: str = Field(default="")
 
 
@@ -63,6 +64,7 @@ class ItemUpdate(BaseModel):
     cost_per_unit: Optional[float] = Field(None, ge=0)
     supplier: Optional[str] = None
     is_eco_certified: Optional[bool] = None
+    storage_condition: Optional[str] = None
     notes: Optional[str] = None
 
 

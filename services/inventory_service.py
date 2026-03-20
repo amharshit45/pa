@@ -1,7 +1,7 @@
 """Inventory Service - CRUD operations, search, and usage logging."""
 
 from database import get_db
-from services.prediction_engine import rule_based_prediction
+from services.prediction_engine import rule_based_prediction, invalidate_forecast_cache
 
 
 def list_items(search: str = "", category: str = "", urgency: str = "") -> dict:
@@ -34,13 +34,15 @@ def create_item(data: dict) -> dict:
     with get_db() as conn:
         cursor = conn.execute(
             """INSERT INTO items (name, category, quantity, unit, expiry_date,
-               daily_usage_rate, cost_per_unit, supplier, is_eco_certified, notes)
-               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+               daily_usage_rate, cost_per_unit, supplier, is_eco_certified,
+               storage_condition, notes)
+               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
             (
                 data["name"], data.get("category", "Supplies"), data["quantity"],
                 data.get("unit", "pieces"), data.get("expiry_date"),
                 data.get("daily_usage_rate", 0), data.get("cost_per_unit", 0),
                 data.get("supplier", ""), 1 if data.get("is_eco_certified") else 0,
+                data.get("storage_condition", "room_temp"),
                 data.get("notes", ""),
             ),
         )
@@ -71,6 +73,7 @@ def delete_item(item_id: int) -> bool:
         if not existing:
             return False
         conn.execute("DELETE FROM items WHERE id = ?", (item_id,))
+    invalidate_forecast_cache(item_id)
     return True
 
 
@@ -86,6 +89,7 @@ def log_usage(item_id: int, quantity_used: float) -> dict:
         conn.execute("UPDATE items SET quantity = ?, updated_at = datetime('now') WHERE id = ?", (new_qty, item_id))
         conn.execute("INSERT INTO usage_log (item_id, quantity_used) VALUES (?, ?)", (item_id, quantity_used))
         row = conn.execute("SELECT * FROM items WHERE id = ?", (item_id,)).fetchone()
+    invalidate_forecast_cache(item_id)
     return dict(row)
 
 

@@ -442,3 +442,151 @@ def test_confidence_field_present():
     data = pred.json()
     assert "confidence" in data
     assert data["confidence"] in ("low", "medium")
+
+
+# --- Shelf Life Prediction Tests ---
+
+def test_shelf_life_in_prediction():
+    """Shelf life prediction is included in prediction response."""
+    res = client.post("/api/items", json={
+        "name": "Milk",
+        "quantity": 10,
+        "unit": "liters",
+        "daily_usage_rate": 3.0,
+        "expiry_date": "2026-04-01",
+        "category": "Perishable",
+        "storage_condition": "refrigerated",
+    })
+    item_id = res.json()["id"]
+    pred = client.get(f"/api/items/{item_id}/predict")
+    data = pred.json()
+    assert "shelf_life" in data
+    assert data["shelf_life"]["effective_shelf_life_days"] >= 0
+    assert "factors" in data["shelf_life"]
+    assert data["shelf_life"]["factors"]["storage_condition"] == "refrigerated"
+
+
+def test_shelf_life_room_temp_perishable_shorter():
+    """Room temp perishable has shorter effective shelf life than nominal."""
+    res = client.post("/api/items", json={
+        "name": "Warm Milk",
+        "quantity": 10,
+        "unit": "liters",
+        "daily_usage_rate": 5.0,
+        "expiry_date": "2026-04-15",
+        "category": "Perishable",
+        "storage_condition": "room_temp",
+    })
+    item_id = res.json()["id"]
+    pred = client.get(f"/api/items/{item_id}/predict")
+    sl = pred.json()["shelf_life"]
+    assert sl["effective_shelf_life_days"] < sl["nominal_expiry_days"]
+
+
+# --- Sustainable Alternatives Tests ---
+
+def test_sustainability_includes_alternatives():
+    """Sustainability endpoint includes alternatives for non-eco items."""
+    client.post("/api/items", json={
+        "name": "Whole Milk",
+        "quantity": 10,
+        "unit": "liters",
+        "is_eco_certified": False,
+    })
+    res = client.get("/api/sustainability")
+    data = res.json()
+    assert "alternatives_available" in data
+    assert len(data["alternatives_available"]) > 0
+    assert data["alternatives_available"][0]["item_name"] == "Whole Milk"
+
+
+def test_create_item_with_storage_condition():
+    """Items can be created with storage_condition field."""
+    res = client.post("/api/items", json={
+        "name": "Ice Cream",
+        "quantity": 5,
+        "unit": "tubs",
+        "storage_condition": "frozen",
+    })
+    assert res.status_code == 201
+    data = res.json()
+    assert data["storage_condition"] == "frozen"
+
+
+def test_chat_sustainability_shows_alternatives():
+    """Chat sustainability response includes alternative_details."""
+    client.post("/api/items", json={
+        "name": "Whole Milk",
+        "quantity": 10,
+        "unit": "liters",
+        "is_eco_certified": False,
+    })
+    res = client.post("/api/chat", json={"query": "How can I improve sustainability?"})
+    data = res.json()
+    assert "alternative_details" in data
+    assert len(data["alternative_details"]) > 0
+
+
+# --- Fuzzy Matching Tests ---
+
+def test_alternatives_fuzzy_match_case_insensitive():
+    """Alternatives match case-insensitively."""
+    client.post("/api/items", json={"name": "whole milk", "quantity": 10, "unit": "liters", "is_eco_certified": False})
+    res = client.get("/api/sustainability")
+    assert len(res.json()["alternatives_available"]) > 0
+
+
+def test_alternatives_fuzzy_match_partial():
+    """Alternatives match partial names like 'Lab Gloves' -> 'Lab Gloves (Nitrile)'."""
+    client.post("/api/items", json={"name": "Lab Gloves", "quantity": 50, "unit": "pairs", "is_eco_certified": False})
+    res = client.get("/api/sustainability")
+    assert len(res.json()["alternatives_available"]) > 0
+
+
+def test_alternatives_no_false_positive():
+    """Unrelated items don't falsely match alternatives."""
+    client.post("/api/items", json={"name": "Printer Ink", "quantity": 5, "unit": "cartridges", "is_eco_certified": False})
+    res = client.get("/api/sustainability")
+    assert len(res.json()["alternatives_available"]) == 0
+
+
+# --- Forecast Cache Tests ---
+
+def test_forecast_cache_hit():
+    """Second prediction call uses cached forecast (same result)."""
+    import sqlite3
+    from datetime import datetime, timedelta
+
+    res = client.post("/api/items", json={"name": "CacheTea", "quantity": 50, "unit": "bags", "daily_usage_rate": 5.0})
+    item_id = res.json()["id"]
+    conn = sqlite3.connect(database.DB_PATH)
+    base_date = datetime.now() - timedelta(days=5)
+    for i in range(5):
+        log_date = (base_date + timedelta(days=i)).strftime("%Y-%m-%d 10:00:00")
+        conn.execute("INSERT INTO usage_log (item_id, quantity_used, logged_at) VALUES (?, ?, ?)", (item_id, 5.0, log_date))
+    conn.commit()
+    conn.close()
+    pred1 = client.get(f"/api/items/{item_id}/predict").json()
+    pred2 = client.get(f"/api/items/{item_id}/predict").json()
+    assert pred1["forecast_usage_rate"] == pred2["forecast_usage_rate"]
+    assert pred1["method"] == "local-forecast"
+
+
+def test_forecast_cache_invalidated_on_usage():
+    """Cache is invalidated when new usage is logged."""
+    import sqlite3
+    from datetime import datetime, timedelta
+
+    res = client.post("/api/items", json={"name": "CacheMilk", "quantity": 50, "unit": "liters", "daily_usage_rate": 3.0})
+    item_id = res.json()["id"]
+    conn = sqlite3.connect(database.DB_PATH)
+    base_date = datetime.now() - timedelta(days=5)
+    for i in range(5):
+        log_date = (base_date + timedelta(days=i)).strftime("%Y-%m-%d 10:00:00")
+        conn.execute("INSERT INTO usage_log (item_id, quantity_used, logged_at) VALUES (?, ?, ?)", (item_id, 3.0, log_date))
+    conn.commit()
+    conn.close()
+    pred1 = client.get(f"/api/items/{item_id}/predict").json()
+    client.post(f"/api/items/{item_id}/usage", json={"quantity_used": 10.0})
+    pred2 = client.get(f"/api/items/{item_id}/predict").json()
+    assert pred2["days_until_empty"] < pred1["days_until_empty"]

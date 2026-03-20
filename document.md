@@ -45,9 +45,9 @@ The backend follows a **thin gateway + service modules** pattern:
 
 - `**app.py`** (API Gateway): Route definitions, request/response models (Pydantic), CORS middleware, static file serving. Contains zero business logic — every handler delegates to a service function.
 - `**services/inventory_service.py**`: CRUD operations, search/filter, usage logging. Owns all direct item table interactions.
-- `**services/prediction_engine.py**`: Holt's double exponential smoothing (level + trend) with weekly seasonality detection, confidence scoring, and rule-based fallback. Reads from `usage_log` to build time-series data.
-- `**services/ai_service.py**`: Rule-based NLP for the chat co-pilot. Routes queries by keyword to domain-specific answer functions.
-- `**services/sustainability_engine.py**`: Sustainability scoring, impact metrics, What-If scenario simulation.
+- `**services/prediction_engine.py**`: Holt's double exponential smoothing (level + trend) with weekly seasonality detection, confidence scoring, shelf life prediction (storage + handling factors), and rule-based fallback. Reads from `usage_log` to build time-series data.
+- `**services/ai_service.py**`: Rule-based NLP for the chat co-pilot. Routes queries by keyword to domain-specific answer functions. Sustainability responses include specific alternative product recommendations.
+- `**services/sustainability_engine.py**`: Sustainability scoring, impact metrics, What-If scenario simulation, and sustainable alternatives lookup from curated JSON database.
 
 ### Frontend Architecture
 
@@ -58,8 +58,8 @@ React SPA with tab-based navigation and shared state:
 - `**CoPilot.jsx**`: Chat interface with message history, suggestion chips, and structured bot responses
 - `**Inventory.jsx**`: Item table with debounced search (300ms), category filter, inline actions (edit/predict/delete)
 - `**ItemModal.jsx**`: Form modal for create/edit with client-side validation
-- `**Predictions.jsx**`: Fetches ML predictions on mount, sorts by urgency, renders forecast cards with model/method badges, trend arrows, confidence indicators, and seasonality descriptions
-- `**Sustainability.jsx**`: Score ring visualization, letter grade, stats row
+- `**Predictions.jsx**`: Fetches ML predictions on mount, sorts by urgency, renders forecast cards with model/method badges, trend arrows, confidence indicators, seasonality descriptions, and shelf life prediction blocks (nominal vs effective days with storage/handling factor details)
+- `**Sustainability.jsx**`: Score ring visualization, letter grade, stats row, and sustainable alternatives section showing specific eco-friendly replacement products with supplier, cost, carbon reduction %, and eco-certifications
 - `**WhatIf.jsx**`: Scenario form with dynamic fields, comparison grid with green/red delta indicators
 
 In production, FastAPI serves the built React app from `frontend/dist/`. During development, the Vite dev server runs on port 5173 with CORS allowing cross-origin API calls to port 8000.
@@ -80,10 +80,11 @@ In production, FastAPI serves the built React app from `frontend/dist/`. During 
 | daily_usage_rate | REAL          | Average daily consumption          |
 | cost_per_unit    | REAL          | Cost for waste calculations        |
 | supplier         | TEXT          | Supplier name for search           |
-| is_eco_certified | INTEGER       | Boolean (0/1) for sustainability   |
-| notes            | TEXT          | Free-form notes                    |
-| created_at       | TIMESTAMP     | Auto-set on creation               |
-| updated_at       | TIMESTAMP     | Auto-set on modification           |
+| is_eco_certified  | INTEGER       | Boolean (0/1) for sustainability   |
+| storage_condition | TEXT          | Storage type: frozen, refrigerated, room_temp, warm (default: room_temp) |
+| notes             | TEXT          | Free-form notes                    |
+| created_at        | TIMESTAMP     | Auto-set on creation               |
+| updated_at        | TIMESTAMP     | Auto-set on modification           |
 
 
 ### Usage Log Table
@@ -97,17 +98,37 @@ In production, FastAPI serves the built React app from `frontend/dist/`. During 
 | logged_at     | TIMESTAMP  | When usage was recorded      |
 
 
-### Synthetic Data Seeding
+### Sample Data Files
 
-On first startup, `seed_from_json()` loads 10 items from `data/sample_data.json`, then `_seed_usage_logs()` generates **60 days (2 months) of synthetic usage history** per item:
+The `data/` directory contains three static JSON files that seed the application on first startup:
 
-- Usage varies ±20% around the item's `daily_usage_rate` for realism
+#### `data/sample_data.json` — Inventory Items
+10 synthetic inventory items across 3 categories (Perishable, Supplies, Equipment). Each item includes a `storage_condition` field (frozen, refrigerated, room_temp, or warm) used by the shelf life prediction engine. 7 of 10 items are eco-certified; the 3 non-eco items (Almond Croissants, Whole Milk, Lab Gloves) have matching entries in the alternatives database.
+
+#### `data/sample_usage_logs.json` — Usage History
+**600 pre-generated usage log entries** covering 60 days (2 months) of synthetic usage history for each item, anchored to 2026-03-20. This file was generated once using the same logic previously embedded in `_seed_usage_logs()` and is now loaded directly on first startup.
+
+The data characteristics:
+- Usage varies ±20% around each item's `daily_usage_rate` for realism
 - **Day-of-week seasonal multipliers** applied per category:
   - *Perishable* items use `WEEKEND_SEASONAL` (peak on Saturday at 1.25x, trough on Tuesday at 0.85x)
   - *Supplies/Equipment* items use `WEEKDAY_SEASONAL` (peak Mon-Tue at 1.10x, trough Sat-Sun at 0.85x)
 - A gentle upward trend factor (+0.2% per day, up to +12% over 60 days) simulates gradual demand increase
-- Seeded with `random.seed(42)` for reproducible demo data
+- Originally generated with `random.seed(42)` for reproducibility
 - 60 days of data ensures "high" confidence from the seasonality detector (≥28 days) and robust Holt's model fitting with 8+ full weekly cycles
+
+Storing usage logs as a static file (rather than generating at runtime) makes the data fully transparent, editable, and deterministic regardless of when the app is first run.
+
+#### `data/sustainable_alternatives.json` — Eco-Friendly Alternatives
+A curated database mapping non-eco inventory items to sustainable replacement products. Keyed by item name, each entry includes:
+- `alternative_name`: Name of the eco-friendly product
+- `supplier`: Supplier/vendor name
+- `estimated_cost_per_unit`: Real cost (not a generic markup)
+- `eco_certifications`: List of certifications (e.g., USDA Organic, Fair Trade, Green Seal)
+- `carbon_footprint_reduction_pct`: Estimated carbon reduction vs the current product
+- `notes`: Additional context
+
+Currently covers all 3 non-eco items in the sample data with 1-2 alternatives each. Extensible by adding new entries to the JSON file.
 
 ## AI/Forecasting Integration Design
 
@@ -210,7 +231,37 @@ else:
 
 Output includes: `method: "rule-based"`, plus a note explaining that more usage logs are needed.
 
-Both methods include expiry date checking and sustainability tips for non-eco items.
+Both methods include expiry date checking, sustainability tips for non-eco items, and shelf life predictions.
+
+### Shelf Life Prediction (`predict_shelf_life`)
+
+Predicts the **effective shelf life** of an item by factoring in storage conditions and handling frequency, going beyond the nominal expiry date.
+
+**Algorithm**:
+
+```
+1. Determine base shelf life:
+   - If expiry_date exists: nominal_days = (expiry_date - now).days
+   - Otherwise: use category defaults (Perishable: 7d, Supplies: 365d, Equipment: 730d)
+
+2. Apply storage condition multiplier (for Perishable items):
+   - frozen: 3.0x (freezing extends shelf life significantly)
+   - refrigerated: 1.0x (baseline for perishables)
+   - room_temp: 0.6x (perishables degrade faster)
+   - warm: 0.3x (accelerated degradation)
+   Non-perishable items are minimally affected by storage (all multipliers ~1.0)
+
+3. Apply handling frequency factor (for Perishable items):
+   - access_ratio = min(daily_usage_rate / quantity, 1.0)
+   - handling_factor = max(0.7, 1.0 - access_ratio * 0.3)
+   Items with high turnover (frequently opened containers, handled stock) degrade faster
+
+4. effective_shelf_life = base_shelf * storage_multiplier * handling_factor
+```
+
+**Output includes**: `nominal_expiry_days`, `effective_shelf_life_days`, `difference_days`, `factors` (storage condition, multiplier, handling factor), and a `recommendation` string.
+
+**Frontend display**: Each prediction card shows a shelf life block with nominal vs effective days, a colored delta indicator (red if days lost, green if gained), storage condition details, and actionable recommendations (e.g., "Consider refrigerating").
 
 ### Frontend: Prediction Card Enhancements
 
@@ -222,6 +273,8 @@ The `Predictions.jsx` component was updated to surface the richer forecast data:
 - **Seasonality description**: purple text showing peak/trough days when weekly patterns are detected (e.g., "Usage peaks on Sat (+25%), dips on Tue (-15%)")
 - **Forecast vs configured rate**: side-by-side comparison so users can see how actual consumption diverges from their configured rate
 
+- **Shelf life prediction block**: Light blue background showing nominal vs effective shelf life days, colored delta indicator (red for days lost, green for days gained), storage condition and multiplier details, handling frequency factor, and actionable recommendation text
+
 All new UI elements use `&&` conditionals — rule-based predictions (which lack these fields) render unchanged.
 
 ### Sustainability Score Algorithm
@@ -231,6 +284,35 @@ All new UI elements use `&&` conditionals — rule-based predictions (which lack
 - **Estimated waste cost**: Sum of (remaining quantity * cost_per_unit) for waste-risk items
 - **Carbon score**: eco_pct * 0.7 + waste_score * 0.3
 - **Grade**: A (>=80), B (>=60), C (>=40), D (<40)
+- **Alternatives available**: For each non-eco item, looks up specific sustainable replacements from `data/sustainable_alternatives.json` and includes them in the response
+
+### Sustainable Alternatives System
+
+The sustainability engine includes a curated alternatives database that provides specific product recommendations rather than generic "switch to eco" advice.
+
+**Architecture**:
+- `_load_alternatives()`: Loads and caches `data/sustainable_alternatives.json` at module level (loaded once, cached for the process lifetime)
+- `get_alternatives_for_item(item)`: Returns a list of alternative products for non-eco items (returns empty list for eco-certified items). Uses 3-tier fuzzy matching: exact name → case-insensitive → `difflib.SequenceMatcher` with 0.6 threshold
+- Integrated into `calculate_sustainability_score()`: Response includes `alternatives_available` listing each non-eco item with its available alternatives
+- Integrated into `simulate_what_if()`: The `switch_eco` and `all_eco` scenarios use real alternative costs from the database instead of a generic 15% markup
+
+**Chat integration**: The `_answer_sustainability()` function in `ai_service.py` includes specific alternative details (product name, supplier, cost, carbon reduction %) in its response. Keywords "alternative" and "procurement" also route to sustainability answers.
+
+### Forecast Caching
+
+The prediction engine caches Holt's forecast results in-memory to avoid redundant computation when predictions are requested multiple times without new usage data (e.g., `/api/predictions` fetches forecasts for all items, and individual item predictions may be requested again shortly after).
+
+**Implementation** (`prediction_engine.py`):
+- Module-level dict: `_forecast_cache = {item_id: {"forecast": dict, "usage_count": int}}`
+- **Cache key**: `item_id`; **staleness check**: `len(usage_history)` — if the usage log count hasn't changed, the cached forecast is reused
+- `invalidate_forecast_cache(item_id)`: Clears cache for a specific item (called from `inventory_service.py` on usage logging and item deletion)
+- `invalidate_forecast_cache()`: Clears all cached forecasts (available for bulk operations)
+
+**Why usage_count as staleness check**: The `usage_log` SELECT still runs (lightweight index scan), but the expensive `holt_forecast()` computation (smoothing loop, seasonality detection, confidence scoring) is skipped when the count hasn't changed. This is simpler than event-based invalidation and self-correcting — any new usage log entry changes the count, causing a cache miss and recomputation.
+
+**Invalidation points**:
+- `inventory_service.log_usage()`: Invalidates cache for the affected item after decrementing stock and inserting the usage log
+- `inventory_service.delete_item()`: Invalidates cache for the deleted item to prevent stale entries
 
 ### What-If Scenario Simulator
 
@@ -240,8 +322,8 @@ Supported scenarios:
 
 - `reduce_usage`: Reduce an item's daily usage by X% (e.g., order less coffee)
 - `reduce_order`: Reduce an item's current stock by X% (e.g., smaller next order)
-- `switch_eco`: Switch a specific item to eco-certified (assumes 15% price premium)
-- `all_eco`: Switch entire inventory to eco-certified
+- `switch_eco`: Switch a specific item to eco-certified (uses real alternative cost from `sustainable_alternatives.json` when available, falls back to 15% premium)
+- `all_eco`: Switch entire inventory to eco-certified (uses per-item alternative costs where available)
 
 Output compares baseline vs projected metrics:
 
@@ -257,7 +339,7 @@ Keyword-matching query handler for natural language questions:
 - Waste queries: "reduce waste", "expiring", "throwing away"
 - Cost queries: "cost", "expensive", "save money"
 - Reorder queries: "running low", "stock", "reorder"
-- Sustainability queries: "eco", "green", "carbon"
+- Sustainability queries: "eco", "green", "carbon", "alternative", "procurement"
 - Summary queries: "overview", "status"
 
 Falls back to suggestion list for unrecognized queries.
@@ -290,6 +372,7 @@ All input validation is handled by Pydantic models in `app.py`:
 - `unit`: Required, non-empty
 - `daily_usage_rate`: >= 0 (defaults to 0)
 - `cost_per_unit`: >= 0 (defaults to 0)
+- `storage_condition`: String (defaults to "room_temp"; accepted values: frozen, refrigerated, room_temp, warm)
 - `quantity_used` (usage log): Required, > 0
 - `chat query`: Required, 1-500 characters
 - `what-if action`: Required string, validated at service layer
@@ -325,11 +408,15 @@ Additional runtime validation:
 
 ## Testing Strategy
 
-22 tests covering:
+32 tests covering:
 
 - **Happy paths** (8): CRUD operations, search, predictions, sustainability scoring, local forecast with usage history, what-if simulator, chat waste query
 - **Edge cases** (9): Empty names, negative quantities, nonexistent items, delete verification, stock overuse, zero usage rate predictions, forecast fallback without history, invalid what-if action, unknown chat query
 - **Holt's method & seasonality** (5): Increasing trend detection, stable trend detection, seasonality detection with weekly pattern, no false-positive seasonality on uniform data, confidence field presence
+- **Shelf life prediction** (2): Shelf life data included in prediction response with correct storage condition; room-temp perishables have shorter effective shelf life than nominal
+- **Sustainable alternatives** (3): Sustainability endpoint returns alternatives for non-eco items; items can be created with storage_condition field; chat sustainability response includes specific alternative details
+- **Fuzzy matching** (3): Case-insensitive alternative matching ("whole milk" → "Whole Milk"); partial name matching ("Lab Gloves" → "Lab Gloves (Nitrile)"); no false positives for unrelated items ("Printer Ink")
+- **Forecast caching** (2): Cache hit returns identical results on consecutive predictions; cache invalidation on usage log produces updated forecast
 
 Tests use an isolated temporary SQLite database (`tempfile.NamedTemporaryFile`) to avoid polluting production data. The `setup_db` fixture calls `init_db()` explicitly since FastAPI's `on_event("startup")` doesn't fire with `TestClient`.
 
@@ -345,7 +432,7 @@ Tests use an isolated temporary SQLite database (`tempfile.NamedTemporaryFile`) 
 
 1. **Notification system**: Email/webhook alerts when forecast predicts critical levels
 2. **Multi-user auth**: JWT-based authentication with role-based access
-3. **Supplier directory**: Database of eco-certified suppliers with comparison
+3. **Expanded supplier directory**: Extend the sustainable alternatives database with more products, real-time pricing, and availability data
 
 ### Long-term
 
@@ -559,16 +646,18 @@ This roadmap defines a three-phase plan to evolve the Green-Tech Inventory Co-Pi
 #### 1.5 Caching
 
 
-| Attribute | Current | Target              |
-| --------- | ------- | ------------------- |
-| Cache     | None    | Redis 7 (TTL-based) |
+| Attribute | Current                                          | Target              |
+| --------- | ------------------------------------------------ | ------------------- |
+| Cache     | In-memory forecast cache (per-item, usage-count) | Redis 7 (TTL-based) |
 
 
-**Strategy**:
+**Current state**: Holt's forecast results are cached in a module-level Python dict (`_forecast_cache`) keyed by item_id with usage_count-based staleness detection. This eliminates redundant Holt's computation within a single process but does not persist across restarts or share across workers.
 
+**Target strategy**:
+
+- Migrate forecast cache to Redis (5min TTL, invalidated on usage log) for multi-worker support
 - Cache `GET /api/v1/items` responses (30s TTL, invalidated on write)
 - Cache sustainability scores (60s TTL)
-- Cache prediction results (5min TTL, invalidated on usage log)
 - Session/refresh token storage in Redis
 
 #### 1.6 CI/CD Pipeline

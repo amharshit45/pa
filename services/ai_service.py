@@ -2,7 +2,7 @@
 
 from datetime import datetime
 from services.prediction_engine import rule_based_prediction
-from services.sustainability_engine import compute_impact_metrics
+from services.sustainability_engine import compute_impact_metrics, get_alternatives_for_item
 
 
 def answer_query(items: list, query: str) -> dict:
@@ -25,7 +25,7 @@ def answer_query(items: list, query: str) -> dict:
         return _answer_cost(items, metrics)
     elif any(w in query_lower for w in ["reorder", "running low", "run out", "stock", "supply"]):
         return _answer_reorder(critical, warnings)
-    elif any(w in query_lower for w in ["eco", "sustain", "green", "carbon", "environment"]):
+    elif any(w in query_lower for w in ["eco", "sustain", "green", "carbon", "environment", "alternative", "procurement"]):
         return _answer_sustainability(items, metrics)
     elif any(w in query_lower for w in ["summary", "overview", "status", "how are we"]):
         return _answer_summary(items, metrics, critical, warnings)
@@ -117,12 +117,35 @@ def _answer_reorder(critical, warnings):
 
 
 def _answer_sustainability(items, metrics):
-    non_eco = [i["name"] for i in items if not i.get("is_eco_certified")][:5]
+    non_eco = [i for i in items if not i.get("is_eco_certified")][:5]
+    non_eco_names = [i["name"] for i in non_eco]
+
+    actions = []
+    alternative_details = []
+    for item in non_eco[:3]:
+        alts = get_alternatives_for_item(item)
+        if alts:
+            best = alts[0]
+            actions.append(
+                f"Switch {item['name']} to {best['alternative_name']} "
+                f"(by {best['supplier']}, ~${best['estimated_cost_per_unit']}/unit, "
+                f"~{best['carbon_footprint_reduction_pct']}% carbon reduction)"
+            )
+            alternative_details.append({
+                "current_item": item["name"],
+                "alternatives": alts,
+            })
+        else:
+            actions.append(f"Switch {item['name']} to an eco-certified alternative")
+
+    if non_eco:
+        actions.append("Switching all items to eco could raise your score significantly")
+
     return {
         "answer": f"Sustainability score: {metrics['carbon_score']}/100. {metrics['eco_pct']}% of items are eco-certified ({metrics['eco_count']}/{metrics['total_items']}).",
-        "non_eco_items": non_eco,
-        "actions": [f"Switch {n} to an eco-certified alternative" for n in non_eco[:3]]
-            + (["Switching all items to eco could raise your score significantly"] if non_eco else []),
+        "non_eco_items": non_eco_names,
+        "alternative_details": alternative_details,
+        "actions": actions,
     }
 
 

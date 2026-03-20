@@ -30,6 +30,32 @@ export default function Sustainability({ onLoad }) {
         </div>
         <div className="stat-card"><div className="num">{data.waste_management_score}</div><div className="label">Waste Score</div></div>
       </div>
+      {data.alternatives_available?.length > 0 && (
+        <div style={{ marginTop: 24, textAlign: 'left' }}>
+          <h3>Sustainable Alternatives Available</h3>
+          {data.alternatives_available.map((item, i) => (
+            <div key={i} style={{ marginTop: 8, padding: '12px 16px', borderLeft: '4px solid var(--ok)', background: '#f8fdf8', borderRadius: 6 }}>
+              <strong>{item.item_name}</strong> <span style={{ color: '#888' }}>(current: ${item.current_cost}/unit)</span>
+              {item.alternatives.map((alt, j) => (
+                <div key={j} style={{ margin: '8px 0 0 12px', fontSize: 13 }}>
+                  <span style={{ fontWeight: 600 }}>{alt.alternative_name}</span> — {alt.supplier}
+                  <br />
+                  ${alt.estimated_cost_per_unit}/unit |{' '}
+                  <span style={{ color: 'var(--ok)' }}>-{alt.carbon_footprint_reduction_pct}% carbon</span>
+                  {alt.eco_certifications?.length > 0 && (
+                    <span style={{ marginLeft: 8 }}>
+                      {alt.eco_certifications.map(c => (
+                        <span key={c} className="badge" style={{ background: '#d4edda', marginLeft: 4, fontSize: 11 }}>{c}</span>
+                      ))}
+                    </span>
+                  )}
+                  {alt.notes && <p style={{ color: '#666', margin: '2px 0 0' }}>{alt.notes}</p>}
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   )
 }

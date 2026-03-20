@@ -13,6 +13,7 @@ export default function ItemModal({ item, onClose, onSaved }) {
     daily_usage_rate: item?.daily_usage_rate ?? 0,
     supplier: item?.supplier || '',
     is_eco_certified: !!item?.is_eco_certified,
+    storage_condition: item?.storage_condition || 'room_temp',
     notes: item?.notes || '',
   })
   const [error, setError] = useState('')
@@ -82,9 +83,20 @@ export default function ItemModal({ item, onClose, onSaved }) {
               <input type="number" value={form.daily_usage_rate} onChange={e => set('daily_usage_rate', e.target.value)} min="0" step="any" />
             </div>
           </div>
-          <div className="form-group">
-            <label>Supplier</label>
-            <input value={form.supplier} onChange={e => set('supplier', e.target.value)} />
+          <div className="form-row">
+            <div className="form-group">
+              <label>Supplier</label>
+              <input value={form.supplier} onChange={e => set('supplier', e.target.value)} />
+            </div>
+            <div className="form-group">
+              <label>Storage Condition</label>
+              <select value={form.storage_condition} onChange={e => set('storage_condition', e.target.value)}>
+                <option value="frozen">Frozen</option>
+                <option value="refrigerated">Refrigerated</option>
+                <option value="room_temp">Room Temp</option>
+                <option value="warm">Warm</option>
+              </select>
+            </div>
           </div>
           <div className="form-group">
             <label><input type="checkbox" checked={form.is_eco_certified} onChange={e => set('is_eco_certified', e.target.checked)} /> Eco-Certified</label>

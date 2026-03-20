@@ -1,6 +1,55 @@
 """Sustainability Engine - Scores, impact metrics, and what-if simulation."""
 
+import json
+import os
+from difflib import SequenceMatcher
 from datetime import datetime
+
+_alternatives_cache = None
+
+
+def _load_alternatives():
+    global _alternatives_cache
+    if _alternatives_cache is not None:
+        return _alternatives_cache
+    path = os.path.join(os.path.dirname(__file__), "..", "data", "sustainable_alternatives.json")
+    try:
+        with open(path) as f:
+            _alternatives_cache = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        _alternatives_cache = {}
+    return _alternatives_cache
+
+
+def get_alternatives_for_item(item: dict) -> list:
+    """Look up sustainable alternatives for a non-eco item using fuzzy name matching."""
+    if item.get("is_eco_certified"):
+        return []
+    alternatives = _load_alternatives()
+    item_name = item.get("name", "")
+
+    # 1. Exact match (fast path)
+    if item_name in alternatives:
+        return alternatives[item_name]
+
+    # 2. Case-insensitive match
+    item_lower = item_name.lower()
+    for key in alternatives:
+        if key.lower() == item_lower:
+            return alternatives[key]
+
+    # 3. Fuzzy match — best match above 0.6 threshold
+    best_score = 0
+    best_key = None
+    for key in alternatives:
+        score = SequenceMatcher(None, item_lower, key.lower()).ratio()
+        if score > best_score:
+            best_score = score
+            best_key = key
+    if best_score >= 0.6 and best_key:
+        return alternatives[best_key]
+
+    return []
 
 
 def calculate_sustainability_score(items: list) -> dict:
@@ -28,6 +77,17 @@ def calculate_sustainability_score(items: list) -> dict:
     waste_score = max(0, 100 - (waste_risk_items * 25))
     overall = round((eco_pct + waste_score) / 2)
 
+    alternatives_available = []
+    for item in items:
+        alts = get_alternatives_for_item(item)
+        if alts:
+            alternatives_available.append({
+                "item_name": item.get("name"),
+                "item_id": item.get("id"),
+                "current_cost": item.get("cost_per_unit", 0),
+                "alternatives": alts,
+            })
+
     return {
         "overall_score": overall,
         "eco_certified_pct": eco_pct,
@@ -37,6 +97,7 @@ def calculate_sustainability_score(items: list) -> dict:
         "waste_risk_items": waste_risk_items,
         "estimated_waste_cost": round(estimated_waste_cost, 2),
         "grade": "A" if overall >= 80 else "B" if overall >= 60 else "C" if overall >= 40 else "D",
+        "alternatives_available": alternatives_available,
     }
 
 
@@ -58,12 +119,19 @@ def simulate_what_if(items: list, scenario: dict) -> dict:
         description = f"Reduce {items_by_id[item_id]['name']} usage by {reduce_pct}%"
 
     elif action == "switch_eco" and item_id in items_by_id:
+        alts = get_alternatives_for_item(items_by_id[item_id])
         for i in modified_items:
             if i["id"] == item_id:
                 i["is_eco_certified"] = 1
-                i["cost_per_unit"] = round(i.get("cost_per_unit", 0) * 1.15, 2)
+                if alts:
+                    i["cost_per_unit"] = alts[0]["estimated_cost_per_unit"]
+                else:
+                    i["cost_per_unit"] = round(i.get("cost_per_unit", 0) * 1.15, 2)
                 break
-        description = f"Switch {items_by_id[item_id]['name']} to eco-certified supplier"
+        if alts:
+            description = f"Switch {items_by_id[item_id]['name']} to {alts[0]['alternative_name']} ({alts[0]['supplier']})"
+        else:
+            description = f"Switch {items_by_id[item_id]['name']} to eco-certified supplier"
 
     elif action == "reduce_order" and item_id in items_by_id:
         for i in modified_items:
@@ -75,8 +143,12 @@ def simulate_what_if(items: list, scenario: dict) -> dict:
     elif action == "all_eco":
         for i in modified_items:
             if not i.get("is_eco_certified"):
+                alts = get_alternatives_for_item(i)
                 i["is_eco_certified"] = 1
-                i["cost_per_unit"] = round(i.get("cost_per_unit", 0) * 1.15, 2)
+                if alts:
+                    i["cost_per_unit"] = alts[0]["estimated_cost_per_unit"]
+                else:
+                    i["cost_per_unit"] = round(i.get("cost_per_unit", 0) * 1.15, 2)
         description = "Switch all items to eco-certified suppliers"
 
     else:

@@ -1,0 +1,3002 @@
+[
+  {
+    "item_id": 1,
+    "quantity_used": 2.38,
+    "logged_at": "2026-01-19 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 1.72,
+    "logged_at": "2026-01-20 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 2.06,
+    "logged_at": "2026-01-21 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 2.12,
+    "logged_at": "2026-01-22 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 3.03,
+    "logged_at": "2026-01-23 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 3.38,
+    "logged_at": "2026-01-24 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 3.07,
+    "logged_at": "2026-01-25 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 1.9,
+    "logged_at": "2026-01-26 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 2.09,
+    "logged_at": "2026-01-27 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 1.86,
+    "logged_at": "2026-01-28 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 2.15,
+    "logged_at": "2026-01-29 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 2.82,
+    "logged_at": "2026-01-30 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 2.59,
+    "logged_at": "2026-01-31 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 2.37,
+    "logged_at": "2026-02-01 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 2.45,
+    "logged_at": "2026-02-02 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 2.23,
+    "logged_at": "2026-02-03 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 2.06,
+    "logged_at": "2026-02-04 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 2.54,
+    "logged_at": "2026-02-05 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 3.2,
+    "logged_at": "2026-02-06 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 2.6,
+    "logged_at": "2026-02-07 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 3.06,
+    "logged_at": "2026-02-08 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 2.53,
+    "logged_at": "2026-02-09 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 2.08,
+    "logged_at": "2026-02-10 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 2.03,
+    "logged_at": "2026-02-11 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 2.94,
+    "logged_at": "2026-02-12 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 2.7,
+    "logged_at": "2026-02-13 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 2.75,
+    "logged_at": "2026-02-14 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 2.32,
+    "logged_at": "2026-02-15 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 2.71,
+    "logged_at": "2026-02-16 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 2.34,
+    "logged_at": "2026-02-17 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 2.68,
+    "logged_at": "2026-02-18 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 2.75,
+    "logged_at": "2026-02-19 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 2.97,
+    "logged_at": "2026-02-20 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 3.96,
+    "logged_at": "2026-02-21 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 2.67,
+    "logged_at": "2026-02-22 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 2.46,
+    "logged_at": "2026-02-23 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 2.58,
+    "logged_at": "2026-02-24 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 2.53,
+    "logged_at": "2026-02-25 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 2.93,
+    "logged_at": "2026-02-26 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 3.06,
+    "logged_at": "2026-02-27 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 3.65,
+    "logged_at": "2026-02-28 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 2.32,
+    "logged_at": "2026-03-01 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 2.17,
+    "logged_at": "2026-03-02 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 2.11,
+    "logged_at": "2026-03-03 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 2.04,
+    "logged_at": "2026-03-04 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 2.31,
+    "logged_at": "2026-03-05 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 2.52,
+    "logged_at": "2026-03-06 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 3.12,
+    "logged_at": "2026-03-07 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 3.03,
+    "logged_at": "2026-03-08 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 2.34,
+    "logged_at": "2026-03-09 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 2.22,
+    "logged_at": "2026-03-10 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 2.19,
+    "logged_at": "2026-03-11 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 2.38,
+    "logged_at": "2026-03-12 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 3.57,
+    "logged_at": "2026-03-13 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 3.67,
+    "logged_at": "2026-03-14 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 3.04,
+    "logged_at": "2026-03-15 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 2.17,
+    "logged_at": "2026-03-16 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 2.58,
+    "logged_at": "2026-03-17 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 2.17,
+    "logged_at": "2026-03-18 00:00:00"
+  },
+  {
+    "item_id": 1,
+    "quantity_used": 2.53,
+    "logged_at": "2026-03-19 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 4.3,
+    "logged_at": "2026-01-19 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 3.6,
+    "logged_at": "2026-01-20 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 3.7,
+    "logged_at": "2026-01-21 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 4.11,
+    "logged_at": "2026-01-22 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 5.04,
+    "logged_at": "2026-01-23 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 5.61,
+    "logged_at": "2026-01-24 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 3.79,
+    "logged_at": "2026-01-25 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 2.97,
+    "logged_at": "2026-01-26 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 3.2,
+    "logged_at": "2026-01-27 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 3.32,
+    "logged_at": "2026-01-28 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 3.43,
+    "logged_at": "2026-01-29 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 5.29,
+    "logged_at": "2026-01-30 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 5.89,
+    "logged_at": "2026-01-31 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 3.99,
+    "logged_at": "2026-02-01 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 3.93,
+    "logged_at": "2026-02-02 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 3.36,
+    "logged_at": "2026-02-03 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 4.33,
+    "logged_at": "2026-02-04 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 3.86,
+    "logged_at": "2026-02-05 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 4.13,
+    "logged_at": "2026-02-06 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 4.66,
+    "logged_at": "2026-02-07 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 4.48,
+    "logged_at": "2026-02-08 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 3.4,
+    "logged_at": "2026-02-09 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 3.67,
+    "logged_at": "2026-02-10 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 4.36,
+    "logged_at": "2026-02-11 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 3.82,
+    "logged_at": "2026-02-12 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 4.1,
+    "logged_at": "2026-02-13 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 6.31,
+    "logged_at": "2026-02-14 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 4.44,
+    "logged_at": "2026-02-15 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 3.18,
+    "logged_at": "2026-02-16 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 2.95,
+    "logged_at": "2026-02-17 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 3.22,
+    "logged_at": "2026-02-18 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 4.24,
+    "logged_at": "2026-02-19 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 5.23,
+    "logged_at": "2026-02-20 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 5.16,
+    "logged_at": "2026-02-21 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 3.7,
+    "logged_at": "2026-02-22 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 3.67,
+    "logged_at": "2026-02-23 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 4.37,
+    "logged_at": "2026-02-24 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 3.91,
+    "logged_at": "2026-02-25 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 4.86,
+    "logged_at": "2026-02-26 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 5.43,
+    "logged_at": "2026-02-27 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 4.34,
+    "logged_at": "2026-02-28 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 4.95,
+    "logged_at": "2026-03-01 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 4.19,
+    "logged_at": "2026-03-02 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 3.75,
+    "logged_at": "2026-03-03 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 3.55,
+    "logged_at": "2026-03-04 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 4.38,
+    "logged_at": "2026-03-05 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 4.06,
+    "logged_at": "2026-03-06 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 5.33,
+    "logged_at": "2026-03-07 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 4.52,
+    "logged_at": "2026-03-08 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 4.67,
+    "logged_at": "2026-03-09 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 4.3,
+    "logged_at": "2026-03-10 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 3.59,
+    "logged_at": "2026-03-11 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 4.2,
+    "logged_at": "2026-03-12 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 4.24,
+    "logged_at": "2026-03-13 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 6.45,
+    "logged_at": "2026-03-14 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 5.35,
+    "logged_at": "2026-03-15 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 3.68,
+    "logged_at": "2026-03-16 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 4.0,
+    "logged_at": "2026-03-17 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 4.19,
+    "logged_at": "2026-03-18 00:00:00"
+  },
+  {
+    "item_id": 2,
+    "quantity_used": 3.66,
+    "logged_at": "2026-03-19 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 54.7,
+    "logged_at": "2026-01-19 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 50.38,
+    "logged_at": "2026-01-20 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 52.73,
+    "logged_at": "2026-01-21 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 48.11,
+    "logged_at": "2026-01-22 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 36.3,
+    "logged_at": "2026-01-23 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 35.92,
+    "logged_at": "2026-01-24 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 31.27,
+    "logged_at": "2026-01-25 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 58.81,
+    "logged_at": "2026-01-26 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 57.91,
+    "logged_at": "2026-01-27 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 54.48,
+    "logged_at": "2026-01-28 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 44.48,
+    "logged_at": "2026-01-29 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 37.86,
+    "logged_at": "2026-01-30 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 45.09,
+    "logged_at": "2026-01-31 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 46.26,
+    "logged_at": "2026-02-01 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 42.45,
+    "logged_at": "2026-02-02 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 50.7,
+    "logged_at": "2026-02-03 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 40.36,
+    "logged_at": "2026-02-04 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 53.95,
+    "logged_at": "2026-02-05 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 51.58,
+    "logged_at": "2026-02-06 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 33.8,
+    "logged_at": "2026-02-07 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 39.39,
+    "logged_at": "2026-02-08 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 52.61,
+    "logged_at": "2026-02-09 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 46.82,
+    "logged_at": "2026-02-10 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 56.79,
+    "logged_at": "2026-02-11 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 48.0,
+    "logged_at": "2026-02-12 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 41.8,
+    "logged_at": "2026-02-13 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 40.87,
+    "logged_at": "2026-02-14 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 44.02,
+    "logged_at": "2026-02-15 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 46.02,
+    "logged_at": "2026-02-16 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 48.43,
+    "logged_at": "2026-02-17 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 60.0,
+    "logged_at": "2026-02-18 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 53.19,
+    "logged_at": "2026-02-19 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 46.69,
+    "logged_at": "2026-02-20 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 41.06,
+    "logged_at": "2026-02-21 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 34.66,
+    "logged_at": "2026-02-22 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 47.13,
+    "logged_at": "2026-02-23 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 49.63,
+    "logged_at": "2026-02-24 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 52.54,
+    "logged_at": "2026-02-25 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 45.35,
+    "logged_at": "2026-02-26 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 43.08,
+    "logged_at": "2026-02-27 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 34.22,
+    "logged_at": "2026-02-28 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 43.56,
+    "logged_at": "2026-03-01 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 47.84,
+    "logged_at": "2026-03-02 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 62.47,
+    "logged_at": "2026-03-03 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 58.8,
+    "logged_at": "2026-03-04 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 42.66,
+    "logged_at": "2026-03-05 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 43.99,
+    "logged_at": "2026-03-06 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 44.67,
+    "logged_at": "2026-03-07 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 37.13,
+    "logged_at": "2026-03-08 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 46.36,
+    "logged_at": "2026-03-09 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 63.94,
+    "logged_at": "2026-03-10 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 53.55,
+    "logged_at": "2026-03-11 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 51.59,
+    "logged_at": "2026-03-12 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 55.44,
+    "logged_at": "2026-03-13 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 47.59,
+    "logged_at": "2026-03-14 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 37.2,
+    "logged_at": "2026-03-15 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 46.17,
+    "logged_at": "2026-03-16 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 53.62,
+    "logged_at": "2026-03-17 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 51.12,
+    "logged_at": "2026-03-18 00:00:00"
+  },
+  {
+    "item_id": 3,
+    "quantity_used": 52.13,
+    "logged_at": "2026-03-19 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 96.06,
+    "logged_at": "2026-01-19 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 94.29,
+    "logged_at": "2026-01-20 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 100.67,
+    "logged_at": "2026-01-21 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 70.93,
+    "logged_at": "2026-01-22 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 77.5,
+    "logged_at": "2026-01-23 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 64.27,
+    "logged_at": "2026-01-24 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 78.77,
+    "logged_at": "2026-01-25 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 80.26,
+    "logged_at": "2026-01-26 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 78.33,
+    "logged_at": "2026-01-27 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 83.75,
+    "logged_at": "2026-01-28 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 83.0,
+    "logged_at": "2026-01-29 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 74.52,
+    "logged_at": "2026-01-30 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 62.66,
+    "logged_at": "2026-01-31 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 81.58,
+    "logged_at": "2026-02-01 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 88.41,
+    "logged_at": "2026-02-02 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 103.74,
+    "logged_at": "2026-02-03 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 88.43,
+    "logged_at": "2026-02-04 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 71.24,
+    "logged_at": "2026-02-05 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 99.43,
+    "logged_at": "2026-02-06 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 80.07,
+    "logged_at": "2026-02-07 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 83.99,
+    "logged_at": "2026-02-08 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 107.33,
+    "logged_at": "2026-02-09 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 104.69,
+    "logged_at": "2026-02-10 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 76.14,
+    "logged_at": "2026-02-11 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 87.53,
+    "logged_at": "2026-02-12 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 74.38,
+    "logged_at": "2026-02-13 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 68.7,
+    "logged_at": "2026-02-14 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 59.02,
+    "logged_at": "2026-02-15 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 88.43,
+    "logged_at": "2026-02-16 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 111.18,
+    "logged_at": "2026-02-17 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 80.68,
+    "logged_at": "2026-02-18 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 99.34,
+    "logged_at": "2026-02-19 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 83.59,
+    "logged_at": "2026-02-20 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 70.26,
+    "logged_at": "2026-02-21 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 85.91,
+    "logged_at": "2026-02-22 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 112.82,
+    "logged_at": "2026-02-23 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 96.44,
+    "logged_at": "2026-02-24 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 98.1,
+    "logged_at": "2026-02-25 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 77.9,
+    "logged_at": "2026-02-26 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 79.23,
+    "logged_at": "2026-02-27 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 87.21,
+    "logged_at": "2026-02-28 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 75.91,
+    "logged_at": "2026-03-01 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 97.0,
+    "logged_at": "2026-03-02 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 105.05,
+    "logged_at": "2026-03-03 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 75.2,
+    "logged_at": "2026-03-04 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 94.64,
+    "logged_at": "2026-03-05 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 87.46,
+    "logged_at": "2026-03-06 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 84.89,
+    "logged_at": "2026-03-07 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 64.32,
+    "logged_at": "2026-03-08 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 114.43,
+    "logged_at": "2026-03-09 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 80.54,
+    "logged_at": "2026-03-10 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 80.93,
+    "logged_at": "2026-03-11 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 96.26,
+    "logged_at": "2026-03-12 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 94.68,
+    "logged_at": "2026-03-13 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 67.36,
+    "logged_at": "2026-03-14 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 64.0,
+    "logged_at": "2026-03-15 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 113.13,
+    "logged_at": "2026-03-16 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 88.08,
+    "logged_at": "2026-03-17 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 97.29,
+    "logged_at": "2026-03-18 00:00:00"
+  },
+  {
+    "item_id": 4,
+    "quantity_used": 98.4,
+    "logged_at": "2026-03-19 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 13.06,
+    "logged_at": "2026-01-19 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 13.2,
+    "logged_at": "2026-01-20 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 13.68,
+    "logged_at": "2026-01-21 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 16.83,
+    "logged_at": "2026-01-22 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 14.66,
+    "logged_at": "2026-01-23 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 20.58,
+    "logged_at": "2026-01-24 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 14.27,
+    "logged_at": "2026-01-25 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 13.12,
+    "logged_at": "2026-01-26 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 13.84,
+    "logged_at": "2026-01-27 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 12.64,
+    "logged_at": "2026-01-28 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 13.47,
+    "logged_at": "2026-01-29 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 18.56,
+    "logged_at": "2026-01-30 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 15.92,
+    "logged_at": "2026-01-31 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 15.89,
+    "logged_at": "2026-02-01 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 16.65,
+    "logged_at": "2026-02-02 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 15.74,
+    "logged_at": "2026-02-03 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 11.55,
+    "logged_at": "2026-02-04 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 13.04,
+    "logged_at": "2026-02-05 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 15.49,
+    "logged_at": "2026-02-06 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 22.84,
+    "logged_at": "2026-02-07 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 18.88,
+    "logged_at": "2026-02-08 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 16.2,
+    "logged_at": "2026-02-09 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 12.62,
+    "logged_at": "2026-02-10 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 12.19,
+    "logged_at": "2026-02-11 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 16.93,
+    "logged_at": "2026-02-12 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 18.74,
+    "logged_at": "2026-02-13 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 20.61,
+    "logged_at": "2026-02-14 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 19.84,
+    "logged_at": "2026-02-15 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 15.13,
+    "logged_at": "2026-02-16 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 10.83,
+    "logged_at": "2026-02-17 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 16.13,
+    "logged_at": "2026-02-18 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 13.92,
+    "logged_at": "2026-02-19 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 18.7,
+    "logged_at": "2026-02-20 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 23.5,
+    "logged_at": "2026-02-21 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 14.36,
+    "logged_at": "2026-02-22 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 12.22,
+    "logged_at": "2026-02-23 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 11.52,
+    "logged_at": "2026-02-24 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 14.81,
+    "logged_at": "2026-02-25 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 13.94,
+    "logged_at": "2026-02-26 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 18.53,
+    "logged_at": "2026-02-27 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 22.01,
+    "logged_at": "2026-02-28 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 15.02,
+    "logged_at": "2026-03-01 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 15.42,
+    "logged_at": "2026-03-02 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 12.54,
+    "logged_at": "2026-03-03 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 14.62,
+    "logged_at": "2026-03-04 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 18.05,
+    "logged_at": "2026-03-05 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 20.51,
+    "logged_at": "2026-03-06 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 17.17,
+    "logged_at": "2026-03-07 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 16.73,
+    "logged_at": "2026-03-08 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 13.5,
+    "logged_at": "2026-03-09 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 11.24,
+    "logged_at": "2026-03-10 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 16.49,
+    "logged_at": "2026-03-11 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 16.59,
+    "logged_at": "2026-03-12 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 16.51,
+    "logged_at": "2026-03-13 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 22.78,
+    "logged_at": "2026-03-14 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 17.84,
+    "logged_at": "2026-03-15 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 14.58,
+    "logged_at": "2026-03-16 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 11.42,
+    "logged_at": "2026-03-17 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 12.51,
+    "logged_at": "2026-03-18 00:00:00"
+  },
+  {
+    "item_id": 5,
+    "quantity_used": 18.37,
+    "logged_at": "2026-03-19 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.38,
+    "logged_at": "2026-01-19 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.34,
+    "logged_at": "2026-01-20 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.36,
+    "logged_at": "2026-01-21 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.33,
+    "logged_at": "2026-01-22 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.26,
+    "logged_at": "2026-01-23 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.22,
+    "logged_at": "2026-01-24 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.24,
+    "logged_at": "2026-01-25 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.39,
+    "logged_at": "2026-01-26 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.37,
+    "logged_at": "2026-01-27 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.37,
+    "logged_at": "2026-01-28 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.37,
+    "logged_at": "2026-01-29 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.27,
+    "logged_at": "2026-01-30 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.23,
+    "logged_at": "2026-01-31 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.22,
+    "logged_at": "2026-02-01 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.38,
+    "logged_at": "2026-02-02 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.39,
+    "logged_at": "2026-02-03 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.31,
+    "logged_at": "2026-02-04 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.34,
+    "logged_at": "2026-02-05 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.27,
+    "logged_at": "2026-02-06 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.31,
+    "logged_at": "2026-02-07 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.3,
+    "logged_at": "2026-02-08 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.41,
+    "logged_at": "2026-02-09 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.39,
+    "logged_at": "2026-02-10 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.38,
+    "logged_at": "2026-02-11 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.27,
+    "logged_at": "2026-02-12 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.34,
+    "logged_at": "2026-02-13 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.25,
+    "logged_at": "2026-02-14 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.32,
+    "logged_at": "2026-02-15 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.39,
+    "logged_at": "2026-02-16 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.4,
+    "logged_at": "2026-02-17 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.38,
+    "logged_at": "2026-02-18 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.3,
+    "logged_at": "2026-02-19 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.36,
+    "logged_at": "2026-02-20 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.23,
+    "logged_at": "2026-02-21 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.31,
+    "logged_at": "2026-02-22 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.4,
+    "logged_at": "2026-02-23 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.31,
+    "logged_at": "2026-02-24 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.38,
+    "logged_at": "2026-02-25 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.33,
+    "logged_at": "2026-02-26 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.3,
+    "logged_at": "2026-02-27 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.31,
+    "logged_at": "2026-02-28 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.25,
+    "logged_at": "2026-03-01 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.29,
+    "logged_at": "2026-03-02 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.31,
+    "logged_at": "2026-03-03 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.32,
+    "logged_at": "2026-03-04 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.39,
+    "logged_at": "2026-03-05 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.39,
+    "logged_at": "2026-03-06 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.25,
+    "logged_at": "2026-03-07 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.3,
+    "logged_at": "2026-03-08 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.35,
+    "logged_at": "2026-03-09 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.43,
+    "logged_at": "2026-03-10 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.35,
+    "logged_at": "2026-03-11 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.41,
+    "logged_at": "2026-03-12 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.28,
+    "logged_at": "2026-03-13 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.34,
+    "logged_at": "2026-03-14 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.25,
+    "logged_at": "2026-03-15 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.43,
+    "logged_at": "2026-03-16 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.33,
+    "logged_at": "2026-03-17 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.3,
+    "logged_at": "2026-03-18 00:00:00"
+  },
+  {
+    "item_id": 6,
+    "quantity_used": 0.34,
+    "logged_at": "2026-03-19 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 4.91,
+    "logged_at": "2026-01-19 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 3.94,
+    "logged_at": "2026-01-20 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 4.71,
+    "logged_at": "2026-01-21 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 4.8,
+    "logged_at": "2026-01-22 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 5.29,
+    "logged_at": "2026-01-23 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 6.51,
+    "logged_at": "2026-01-24 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 4.79,
+    "logged_at": "2026-01-25 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 4.94,
+    "logged_at": "2026-01-26 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 3.46,
+    "logged_at": "2026-01-27 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 5.36,
+    "logged_at": "2026-01-28 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 4.92,
+    "logged_at": "2026-01-29 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 6.11,
+    "logged_at": "2026-01-30 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 7.02,
+    "logged_at": "2026-01-31 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 5.75,
+    "logged_at": "2026-02-01 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 4.37,
+    "logged_at": "2026-02-02 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 3.62,
+    "logged_at": "2026-02-03 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 4.95,
+    "logged_at": "2026-02-04 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 4.58,
+    "logged_at": "2026-02-05 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 5.27,
+    "logged_at": "2026-02-06 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 7.39,
+    "logged_at": "2026-02-07 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 5.94,
+    "logged_at": "2026-02-08 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 4.31,
+    "logged_at": "2026-02-09 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 4.1,
+    "logged_at": "2026-02-10 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 4.53,
+    "logged_at": "2026-02-11 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 4.78,
+    "logged_at": "2026-02-12 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 5.3,
+    "logged_at": "2026-02-13 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 5.59,
+    "logged_at": "2026-02-14 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 5.36,
+    "logged_at": "2026-02-15 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 5.59,
+    "logged_at": "2026-02-16 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 4.82,
+    "logged_at": "2026-02-17 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 5.54,
+    "logged_at": "2026-02-18 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 5.28,
+    "logged_at": "2026-02-19 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 5.39,
+    "logged_at": "2026-02-20 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 6.79,
+    "logged_at": "2026-02-21 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 4.49,
+    "logged_at": "2026-02-22 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 4.4,
+    "logged_at": "2026-02-23 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 4.43,
+    "logged_at": "2026-02-24 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 4.99,
+    "logged_at": "2026-02-25 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 5.43,
+    "logged_at": "2026-02-26 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 5.85,
+    "logged_at": "2026-02-27 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 6.59,
+    "logged_at": "2026-02-28 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 5.03,
+    "logged_at": "2026-03-01 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 4.83,
+    "logged_at": "2026-03-02 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 5.36,
+    "logged_at": "2026-03-03 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 5.48,
+    "logged_at": "2026-03-04 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 4.49,
+    "logged_at": "2026-03-05 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 5.01,
+    "logged_at": "2026-03-06 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 6.88,
+    "logged_at": "2026-03-07 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 6.06,
+    "logged_at": "2026-03-08 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 4.62,
+    "logged_at": "2026-03-09 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 5.27,
+    "logged_at": "2026-03-10 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 5.46,
+    "logged_at": "2026-03-11 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 5.61,
+    "logged_at": "2026-03-12 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 5.41,
+    "logged_at": "2026-03-13 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 6.09,
+    "logged_at": "2026-03-14 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 4.72,
+    "logged_at": "2026-03-15 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 4.49,
+    "logged_at": "2026-03-16 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 4.69,
+    "logged_at": "2026-03-17 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 5.72,
+    "logged_at": "2026-03-18 00:00:00"
+  },
+  {
+    "item_id": 7,
+    "quantity_used": 4.4,
+    "logged_at": "2026-03-19 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 1.3,
+    "logged_at": "2026-01-19 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 1.34,
+    "logged_at": "2026-01-20 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 1.19,
+    "logged_at": "2026-01-21 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 1.55,
+    "logged_at": "2026-01-22 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 1.66,
+    "logged_at": "2026-01-23 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 1.7,
+    "logged_at": "2026-01-24 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 1.69,
+    "logged_at": "2026-01-25 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 1.1,
+    "logged_at": "2026-01-26 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 1.43,
+    "logged_at": "2026-01-27 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 1.52,
+    "logged_at": "2026-01-28 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 1.22,
+    "logged_at": "2026-01-29 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 1.64,
+    "logged_at": "2026-01-30 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 1.67,
+    "logged_at": "2026-01-31 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 1.91,
+    "logged_at": "2026-02-01 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 1.4,
+    "logged_at": "2026-02-02 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 1.08,
+    "logged_at": "2026-02-03 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 1.25,
+    "logged_at": "2026-02-04 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 1.68,
+    "logged_at": "2026-02-05 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 1.68,
+    "logged_at": "2026-02-06 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 2.18,
+    "logged_at": "2026-02-07 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 1.75,
+    "logged_at": "2026-02-08 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 1.68,
+    "logged_at": "2026-02-09 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 1.38,
+    "logged_at": "2026-02-10 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 1.67,
+    "logged_at": "2026-02-11 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 1.73,
+    "logged_at": "2026-02-12 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 1.81,
+    "logged_at": "2026-02-13 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 2.15,
+    "logged_at": "2026-02-14 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 1.66,
+    "logged_at": "2026-02-15 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 1.61,
+    "logged_at": "2026-02-16 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 1.37,
+    "logged_at": "2026-02-17 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 1.66,
+    "logged_at": "2026-02-18 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 1.66,
+    "logged_at": "2026-02-19 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 1.74,
+    "logged_at": "2026-02-20 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 1.81,
+    "logged_at": "2026-02-21 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 1.51,
+    "logged_at": "2026-02-22 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 1.52,
+    "logged_at": "2026-02-23 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 1.51,
+    "logged_at": "2026-02-24 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 1.46,
+    "logged_at": "2026-02-25 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 1.61,
+    "logged_at": "2026-02-26 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 1.62,
+    "logged_at": "2026-02-27 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 1.68,
+    "logged_at": "2026-02-28 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 1.56,
+    "logged_at": "2026-03-01 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 1.33,
+    "logged_at": "2026-03-02 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 1.28,
+    "logged_at": "2026-03-03 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 1.49,
+    "logged_at": "2026-03-04 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 1.33,
+    "logged_at": "2026-03-05 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 1.61,
+    "logged_at": "2026-03-06 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 2.21,
+    "logged_at": "2026-03-07 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 1.87,
+    "logged_at": "2026-03-08 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 1.22,
+    "logged_at": "2026-03-09 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 1.35,
+    "logged_at": "2026-03-10 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 1.51,
+    "logged_at": "2026-03-11 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 1.52,
+    "logged_at": "2026-03-12 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 1.61,
+    "logged_at": "2026-03-13 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 2.01,
+    "logged_at": "2026-03-14 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 2.03,
+    "logged_at": "2026-03-15 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 1.55,
+    "logged_at": "2026-03-16 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 1.53,
+    "logged_at": "2026-03-17 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 1.72,
+    "logged_at": "2026-03-18 00:00:00"
+  },
+  {
+    "item_id": 8,
+    "quantity_used": 1.76,
+    "logged_at": "2026-03-19 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 10.47,
+    "logged_at": "2026-01-19 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 8.84,
+    "logged_at": "2026-01-20 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 9.92,
+    "logged_at": "2026-01-21 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 11.63,
+    "logged_at": "2026-01-22 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 11.51,
+    "logged_at": "2026-01-23 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 10.14,
+    "logged_at": "2026-01-24 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 8.32,
+    "logged_at": "2026-01-25 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 12.26,
+    "logged_at": "2026-01-26 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 11.38,
+    "logged_at": "2026-01-27 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 11.13,
+    "logged_at": "2026-01-28 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 9.51,
+    "logged_at": "2026-01-29 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 9.07,
+    "logged_at": "2026-01-30 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 8.48,
+    "logged_at": "2026-01-31 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 7.08,
+    "logged_at": "2026-02-01 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 10.57,
+    "logged_at": "2026-02-02 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 12.14,
+    "logged_at": "2026-02-03 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 10.42,
+    "logged_at": "2026-02-04 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 9.4,
+    "logged_at": "2026-02-05 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 10.22,
+    "logged_at": "2026-02-06 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 7.51,
+    "logged_at": "2026-02-07 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 9.27,
+    "logged_at": "2026-02-08 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 9.29,
+    "logged_at": "2026-02-09 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 11.0,
+    "logged_at": "2026-02-10 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 11.27,
+    "logged_at": "2026-02-11 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 8.92,
+    "logged_at": "2026-02-12 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 11.1,
+    "logged_at": "2026-02-13 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 7.64,
+    "logged_at": "2026-02-14 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 8.82,
+    "logged_at": "2026-02-15 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 9.53,
+    "logged_at": "2026-02-16 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 11.08,
+    "logged_at": "2026-02-17 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 9.85,
+    "logged_at": "2026-02-18 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 10.38,
+    "logged_at": "2026-02-19 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 11.75,
+    "logged_at": "2026-02-20 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 8.62,
+    "logged_at": "2026-02-21 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 9.99,
+    "logged_at": "2026-02-22 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 13.33,
+    "logged_at": "2026-02-23 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 10.62,
+    "logged_at": "2026-02-24 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 9.39,
+    "logged_at": "2026-02-25 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 9.13,
+    "logged_at": "2026-02-26 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 10.95,
+    "logged_at": "2026-02-27 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 11.02,
+    "logged_at": "2026-02-28 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 8.65,
+    "logged_at": "2026-03-01 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 12.64,
+    "logged_at": "2026-03-02 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 13.29,
+    "logged_at": "2026-03-03 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 12.12,
+    "logged_at": "2026-03-04 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 12.61,
+    "logged_at": "2026-03-05 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 12.88,
+    "logged_at": "2026-03-06 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 8.18,
+    "logged_at": "2026-03-07 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 7.53,
+    "logged_at": "2026-03-08 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 10.4,
+    "logged_at": "2026-03-09 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 10.29,
+    "logged_at": "2026-03-10 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 12.36,
+    "logged_at": "2026-03-11 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 11.89,
+    "logged_at": "2026-03-12 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 9.81,
+    "logged_at": "2026-03-13 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 10.17,
+    "logged_at": "2026-03-14 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 10.44,
+    "logged_at": "2026-03-15 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 10.61,
+    "logged_at": "2026-03-16 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 12.78,
+    "logged_at": "2026-03-17 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 12.88,
+    "logged_at": "2026-03-18 00:00:00"
+  },
+  {
+    "item_id": 9,
+    "quantity_used": 9.93,
+    "logged_at": "2026-03-19 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.25,
+    "logged_at": "2026-01-19 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.26,
+    "logged_at": "2026-01-20 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.18,
+    "logged_at": "2026-01-21 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.17,
+    "logged_at": "2026-01-22 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.19,
+    "logged_at": "2026-01-23 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.18,
+    "logged_at": "2026-01-24 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.2,
+    "logged_at": "2026-01-25 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.21,
+    "logged_at": "2026-01-26 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.24,
+    "logged_at": "2026-01-27 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.18,
+    "logged_at": "2026-01-28 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.23,
+    "logged_at": "2026-01-29 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.21,
+    "logged_at": "2026-01-30 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.15,
+    "logged_at": "2026-01-31 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.19,
+    "logged_at": "2026-02-01 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.26,
+    "logged_at": "2026-02-02 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.24,
+    "logged_at": "2026-02-03 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.18,
+    "logged_at": "2026-02-04 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.26,
+    "logged_at": "2026-02-05 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.23,
+    "logged_at": "2026-02-06 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.17,
+    "logged_at": "2026-02-07 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.17,
+    "logged_at": "2026-02-08 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.22,
+    "logged_at": "2026-02-09 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.23,
+    "logged_at": "2026-02-10 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.21,
+    "logged_at": "2026-02-11 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.25,
+    "logged_at": "2026-02-12 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.24,
+    "logged_at": "2026-02-13 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.15,
+    "logged_at": "2026-02-14 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.21,
+    "logged_at": "2026-02-15 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.24,
+    "logged_at": "2026-02-16 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.26,
+    "logged_at": "2026-02-17 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.24,
+    "logged_at": "2026-02-18 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.22,
+    "logged_at": "2026-02-19 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.23,
+    "logged_at": "2026-02-20 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.21,
+    "logged_at": "2026-02-21 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.16,
+    "logged_at": "2026-02-22 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.26,
+    "logged_at": "2026-02-23 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.24,
+    "logged_at": "2026-02-24 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.22,
+    "logged_at": "2026-02-25 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.22,
+    "logged_at": "2026-02-26 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.24,
+    "logged_at": "2026-02-27 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.17,
+    "logged_at": "2026-02-28 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.21,
+    "logged_at": "2026-03-01 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.27,
+    "logged_at": "2026-03-02 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.2,
+    "logged_at": "2026-03-03 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.26,
+    "logged_at": "2026-03-04 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.21,
+    "logged_at": "2026-03-05 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.22,
+    "logged_at": "2026-03-06 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.19,
+    "logged_at": "2026-03-07 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.18,
+    "logged_at": "2026-03-08 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.2,
+    "logged_at": "2026-03-09 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.28,
+    "logged_at": "2026-03-10 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.2,
+    "logged_at": "2026-03-11 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.21,
+    "logged_at": "2026-03-12 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.25,
+    "logged_at": "2026-03-13 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.18,
+    "logged_at": "2026-03-14 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.22,
+    "logged_at": "2026-03-15 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.26,
+    "logged_at": "2026-03-16 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.22,
+    "logged_at": "2026-03-17 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.19,
+    "logged_at": "2026-03-18 00:00:00"
+  },
+  {
+    "item_id": 10,
+    "quantity_used": 0.28,
+    "logged_at": "2026-03-19 00:00:00"
+  }
+]

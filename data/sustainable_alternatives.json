@@ -1,0 +1,48 @@
+{
+  "Almond Croissants": [
+    {
+      "alternative_name": "Organic Almond Croissants",
+      "supplier": "Green Artisan Bakery Co-op",
+      "estimated_cost_per_unit": 3.10,
+      "eco_certifications": ["USDA Organic", "Fair Trade"],
+      "carbon_footprint_reduction_pct": 25,
+      "notes": "Uses organic flour and sustainably sourced almonds"
+    },
+    {
+      "alternative_name": "Vegan Almond Pastries",
+      "supplier": "Plant Bake Collective",
+      "estimated_cost_per_unit": 3.40,
+      "eco_certifications": ["USDA Organic", "Vegan Certified"],
+      "carbon_footprint_reduction_pct": 40,
+      "notes": "Plant-based, lower dairy carbon footprint"
+    }
+  ],
+  "Whole Milk": [
+    {
+      "alternative_name": "Organic Whole Milk",
+      "supplier": "Happy Cow Organic Dairy",
+      "estimated_cost_per_unit": 2.40,
+      "eco_certifications": ["USDA Organic", "Animal Welfare Approved"],
+      "carbon_footprint_reduction_pct": 30,
+      "notes": "Pasture-raised, local organic farm"
+    },
+    {
+      "alternative_name": "Oat Milk (Plant-based)",
+      "supplier": "Oatly Local Distributor",
+      "estimated_cost_per_unit": 3.25,
+      "eco_certifications": ["Carbon Neutral Certified"],
+      "carbon_footprint_reduction_pct": 65,
+      "notes": "Significantly lower carbon footprint than dairy"
+    }
+  ],
+  "Lab Gloves (Nitrile)": [
+    {
+      "alternative_name": "Biodegradable Nitrile Gloves",
+      "supplier": "EcoGlove International",
+      "estimated_cost_per_unit": 0.32,
+      "eco_certifications": ["Green Seal", "Biodegradable Products Institute"],
+      "carbon_footprint_reduction_pct": 40,
+      "notes": "Accelerated biodegradation technology, same protection level"
+    }
+  ]
+}
