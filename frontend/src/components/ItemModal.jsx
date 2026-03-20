@@ -99,7 +99,7 @@ export default function ItemModal({ item, onClose, onSaved }) {
             </div>
           </div>
           <div className="form-group">
-            <label><input type="checkbox" checked={form.is_eco_certified} onChange={e => set('is_eco_certified', e.target.checked)} /> Eco-Certified</label>
+            <label style={{ display: 'inline-flex', alignItems: 'center', gap: 8, whiteSpace: 'nowrap' }}><input type="checkbox" checked={form.is_eco_certified} onChange={e => set('is_eco_certified', e.target.checked)} /> Eco-Certified</label>
           </div>
           <div className="form-group">
             <label>Notes</label>

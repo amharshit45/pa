@@ -143,7 +143,9 @@ def simulate_what_if(items: list, scenario: dict) -> dict:
     elif action == "reduce_order" and item_id in items_by_id:
         for i in modified_items:
             if i["id"] == item_id:
-                i["quantity"] = round(i.get("quantity", 0) * (1 - reduce_pct / 100), 1)
+                factor = 1 - reduce_pct / 100
+                i["quantity"] = round(i.get("quantity", 0) * factor, 1)
+                i["daily_usage_rate"] = round(i.get("daily_usage_rate", 0) * factor, 2)
                 break
         description = f"Reduce {items_by_id[item_id]['name']} order by {reduce_pct}%"
 
