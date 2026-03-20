@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { api } from '../api'
 import ItemModal from './ItemModal'
+import UsageModal from './UsageModal'
 
 function quickPredict(item) {
   const rate = item.daily_usage_rate || 0
@@ -26,6 +27,7 @@ export default function Inventory({ items: initialItems, onRefresh }) {
   const [categories, setCategories] = useState([])
   const [items, setItems] = useState(initialItems)
   const [modal, setModal] = useState(null) // null | 'add' | item object
+  const [usageItem, setUsageItem] = useState(null)
   const [timer, setTimer] = useState(null)
 
   useEffect(() => {
@@ -71,6 +73,7 @@ export default function Inventory({ items: initialItems, onRefresh }) {
 
   const handleSaved = () => {
     setModal(null)
+    setUsageItem(null)
     loadItems()
     onRefresh()
   }
@@ -106,6 +109,7 @@ export default function Inventory({ items: initialItems, onRefresh }) {
                 <td><span className={`badge badge-${quickPredict(i)}`}>{quickPredict(i)}</span></td>
                 <td>
                   <button className="btn-sm btn-primary" onClick={() => setModal(i)}>Edit</button>{' '}
+                  <button className="btn-sm" onClick={() => setUsageItem(i)}>Use</button>{' '}
                   <button className="btn-sm" onClick={() => handlePredict(i.id)}>Predict</button>{' '}
                   <button className="btn-sm btn-danger" onClick={() => handleDelete(i.id)}>Del</button>
                 </td>
@@ -115,6 +119,7 @@ export default function Inventory({ items: initialItems, onRefresh }) {
         </table>
       </div>
       {modal && <ItemModal item={modal === 'add' ? null : modal} onClose={() => setModal(null)} onSaved={handleSaved} />}
+      {usageItem && <UsageModal item={usageItem} onClose={() => setUsageItem(null)} onSaved={handleSaved} />}
     </>
   )
 }

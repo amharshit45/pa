@@ -22,7 +22,7 @@ from typing import Optional
 from database import init_db, seed_from_json
 from services.inventory_service import (
     list_items, get_item, create_item, update_item, delete_item,
-    log_usage, get_all_items, get_categories,
+    log_usage, get_usage_history, get_all_items, get_categories,
 )
 from services.prediction_engine import local_forecast_prediction, predict_all
 from services.sustainability_engine import calculate_sustainability_score, simulate_what_if
@@ -140,6 +140,14 @@ def api_log_usage(item_id: int, usage: UsageLog):
             raise HTTPException(404, "Item not found")
         raise HTTPException(400, f"Insufficient stock. Current: {result['current']} {result['unit']}")
     return result
+
+
+@app.get("/api/items/{item_id}/usage")
+def api_get_usage(item_id: int):
+    item = get_item(item_id)
+    if not item:
+        raise HTTPException(404, "Item not found")
+    return get_usage_history(item_id)
 
 
 @app.get("/api/categories")

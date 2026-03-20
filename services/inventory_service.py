@@ -93,6 +93,15 @@ def log_usage(item_id: int, quantity_used: float) -> dict:
     return dict(row)
 
 
+def get_usage_history(item_id: int, limit: int = 30) -> list:
+    with get_db() as conn:
+        rows = conn.execute(
+            "SELECT id, item_id, quantity_used, logged_at FROM usage_log WHERE item_id = ? ORDER BY logged_at DESC LIMIT ?",
+            (item_id, limit),
+        ).fetchall()
+    return [dict(r) for r in rows]
+
+
 def get_all_items() -> list:
     with get_db() as conn:
         rows = conn.execute("SELECT * FROM items ORDER BY name").fetchall()

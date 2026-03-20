@@ -63,44 +63,33 @@ export default function WhatIf({ items }) {
       </div>
       <button className="btn-primary" onClick={run}>Run Simulation</button>
       {error && <div className="error" style={{ marginTop: 12 }}>{error}</div>}
-      {result && !result.error && (
-        <div className="card" style={{ marginTop: 16, borderLeft: '4px solid var(--green)' }}>
-          <h3 style={{ marginBottom: 12 }}>Scenario: {result.scenario}</h3>
-          <div className="comparison-grid">
-            <div className="metric">
-              <div className="label">Weekly Waste Cost</div>
-              <div className="value">${result.projected.estimated_weekly_waste_cost}</div>
-              <div className="delta"><DeltaDisplay value={result.delta.waste_cost_change} /></div>
-            </div>
-            <div className="metric">
-              <div className="label">Eco-Certified %</div>
-              <div className="value">{result.projected.eco_pct}%</div>
-              <div className="delta"><DeltaDisplay value={result.delta.eco_pct_change} invert />%</div>
-            </div>
-            <div className="metric">
-              <div className="label">Carbon Score</div>
-              <div className="value">{result.projected.carbon_score}/100</div>
-              <div className="delta"><DeltaDisplay value={result.delta.carbon_score_change} invert /></div>
-            </div>
+      {result && !result.error && (() => {
+        const d = result.delta
+        const metrics = [
+          { label: 'Weekly Waste Cost', value: `$${result.projected.estimated_weekly_waste_cost}`, delta: d.waste_cost_change },
+          { label: 'Eco-Certified %', value: `${result.projected.eco_pct}%`, delta: d.eco_pct_change, invert: true, suffix: '%' },
+          { label: 'Carbon Score', value: `${result.projected.carbon_score}/100`, delta: d.carbon_score_change, invert: true },
+          { label: 'Weekly Procurement', value: `$${result.projected.weekly_procurement_cost}`, delta: d.weekly_cost_change },
+        ].filter(m => m.delta !== 0)
+        return (
+          <div className="card" style={{ marginTop: 16, borderLeft: '4px solid var(--green)' }}>
+            <h3 style={{ marginBottom: 12 }}>Scenario: {result.scenario}</h3>
+            {metrics.length === 0 ? (
+              <p style={{ color: '#888' }}>No measurable impact from this scenario.</p>
+            ) : (
+              <div className="comparison-grid">
+                {metrics.map(m => (
+                  <div className="metric" key={m.label}>
+                    <div className="label">{m.label}</div>
+                    <div className="value">{m.value}</div>
+                    <div className="delta"><DeltaDisplay value={m.delta} invert={m.invert} />{m.suffix || ''}</div>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
-          <div className="comparison-grid" style={{ marginTop: 8 }}>
-            <div className="metric">
-              <div className="label">Weekly Procurement</div>
-              <div className="value">${result.projected.weekly_procurement_cost}</div>
-              <div className="delta"><DeltaDisplay value={result.delta.weekly_cost_change} /></div>
-            </div>
-            <div className="metric">
-              <div className="label">Waste Risk Items</div>
-              <div className="value">{result.projected.waste_risk_items.length}</div>
-            </div>
-            <div className="metric">
-              <div className="label">Baseline Carbon</div>
-              <div className="value">{result.baseline.carbon_score}/100</div>
-              <div className="delta" style={{ color: '#888' }}>before change</div>
-            </div>
-          </div>
-        </div>
-      )}
+        )
+      })()}
     </div>
   )
 }

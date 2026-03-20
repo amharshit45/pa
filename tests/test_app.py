@@ -566,6 +566,25 @@ def test_alternatives_no_false_positive():
 
 # --- Forecast Cache Tests ---
 
+def test_get_usage_history():
+    """GET /api/items/{id}/usage returns logged usage entries."""
+    res = client.post("/api/items", json={"name": "HistoryItem", "quantity": 50, "unit": "pcs"})
+    item_id = res.json()["id"]
+    client.post(f"/api/items/{item_id}/usage", json={"quantity_used": 5.0})
+    client.post(f"/api/items/{item_id}/usage", json={"quantity_used": 3.0})
+    history = client.get(f"/api/items/{item_id}/usage")
+    assert history.status_code == 200
+    data = history.json()
+    assert len(data) == 2
+    assert {data[0]["quantity_used"], data[1]["quantity_used"]} == {5.0, 3.0}
+
+
+def test_get_usage_history_nonexistent_item():
+    """GET /api/items/{id}/usage returns 404 for missing item."""
+    res = client.get("/api/items/99999/usage")
+    assert res.status_code == 404
+
+
 def test_forecast_cache_hit():
     """Second prediction call uses cached forecast (same result)."""
     import sqlite3
