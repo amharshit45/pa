@@ -59,7 +59,7 @@ React SPA with tab-based navigation and shared state:
 - `**Inventory.jsx**`: Item table with debounced search (300ms), category filter, inline actions (edit/predict/delete)
 - `**ItemModal.jsx**`: Form modal for create/edit with client-side validation
 - `**Predictions.jsx**`: Fetches ML predictions on mount, sorts by urgency, renders forecast cards with model/method badges, trend arrows, confidence indicators, seasonality descriptions, and shelf life prediction blocks (nominal vs effective days with storage/handling factor details)
-- `**Sustainability.jsx**`: Score ring visualization, letter grade, stats row, and sustainable alternatives section showing specific eco-friendly replacement products with supplier, cost, carbon reduction %, and eco-certifications
+- `**Sustainability.jsx**`: Score ring visualization, letter grade, stats row, and sustainable alternatives section showing specific eco-friendly replacement products with supplier, cost, carbon reduction %, eco-certifications, and projected score improvement badge (e.g., "Score: 65 → 72 (+7)")
 - `**WhatIf.jsx**`: Scenario form with dynamic fields, comparison grid with green/red delta indicators
 
 In production, FastAPI serves the built React app from `frontend/dist/`. During development, the Vite dev server runs on port 5173 with CORS allowing cross-origin API calls to port 8000.
@@ -284,7 +284,7 @@ All new UI elements use `&&` conditionals — rule-based predictions (which lack
 - **Estimated waste cost**: Sum of (remaining quantity * cost_per_unit) for waste-risk items
 - **Carbon score**: eco_pct * 0.7 + waste_score * 0.3
 - **Grade**: A (>=80), B (>=60), C (>=40), D (<40)
-- **Alternatives available**: For each non-eco item, looks up specific sustainable replacements from `data/sustainable_alternatives.json` and includes them in the response
+- **Alternatives available**: For each non-eco item, looks up specific sustainable replacements from `data/sustainable_alternatives.json` and includes them in the response with projected score improvement
 
 ### Sustainable Alternatives System
 
@@ -293,7 +293,7 @@ The sustainability engine includes a curated alternatives database that provides
 **Architecture**:
 - `_load_alternatives()`: Loads and caches `data/sustainable_alternatives.json` at module level (loaded once, cached for the process lifetime)
 - `get_alternatives_for_item(item)`: Returns a list of alternative products for non-eco items (returns empty list for eco-certified items). Uses 3-tier fuzzy matching: exact name → case-insensitive → `difflib.SequenceMatcher` with 0.6 threshold
-- Integrated into `calculate_sustainability_score()`: Response includes `alternatives_available` listing each non-eco item with its available alternatives
+- Integrated into `calculate_sustainability_score()`: Response includes `alternatives_available` listing each non-eco item with its available alternatives and per-item `projected_score`/`score_improvement` fields showing the sustainability score impact of switching that item to eco-certified
 - Integrated into `simulate_what_if()`: The `switch_eco` and `all_eco` scenarios use real alternative costs from the database instead of a generic 15% markup
 
 **Chat integration**: The `_answer_sustainability()` function in `ai_service.py` includes specific alternative details (product name, supplier, cost, carbon reduction %) in its response. Keywords "alternative" and "procurement" also route to sustainability answers.
@@ -408,13 +408,13 @@ Additional runtime validation:
 
 ## Testing Strategy
 
-32 tests covering:
+33 tests covering:
 
 - **Happy paths** (8): CRUD operations, search, predictions, sustainability scoring, local forecast with usage history, what-if simulator, chat waste query
 - **Edge cases** (9): Empty names, negative quantities, nonexistent items, delete verification, stock overuse, zero usage rate predictions, forecast fallback without history, invalid what-if action, unknown chat query
 - **Holt's method & seasonality** (5): Increasing trend detection, stable trend detection, seasonality detection with weekly pattern, no false-positive seasonality on uniform data, confidence field presence
 - **Shelf life prediction** (2): Shelf life data included in prediction response with correct storage condition; room-temp perishables have shorter effective shelf life than nominal
-- **Sustainable alternatives** (3): Sustainability endpoint returns alternatives for non-eco items; items can be created with storage_condition field; chat sustainability response includes specific alternative details
+- **Sustainable alternatives** (4): Sustainability endpoint returns alternatives for non-eco items; items can be created with storage_condition field; chat sustainability response includes specific alternative details; score impact preview shows projected improvement per alternative
 - **Fuzzy matching** (3): Case-insensitive alternative matching ("whole milk" → "Whole Milk"); partial name matching ("Lab Gloves" → "Lab Gloves (Nitrile)"); no false positives for unrelated items ("Printer Ink")
 - **Forecast caching** (2): Cache hit returns identical results on consecutive predictions; cache invalidation on usage log produces updated forecast
 

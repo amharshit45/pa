@@ -90,7 +90,7 @@ pa/
 |   |       +-- WhatIf.jsx        # Scenario simulator with comparison grid
 |   +-- dist/                 # Production build (served by FastAPI)
 +-- tests/
-|   +-- test_app.py           # 32 tests (happy paths + edge cases + forecasting + shelf life + alternatives + caching)
+|   +-- test_app.py           # 33 tests (happy paths + edge cases + forecasting + shelf life + alternatives + caching)
 +-- data/
 |   +-- sample_data.json              # 10 synthetic inventory items (with storage conditions)
 |   +-- sample_usage_logs.json        # Pre-generated 60-day usage history (static, deterministic)
@@ -158,6 +158,7 @@ Model procurement changes before committing:
 - Identifies waste-risk items (near expiry with remaining stock)
 - Carbon score combining eco-certification (70%) and waste metrics (30%)
 - **Sustainable alternatives section**: Lists specific eco-friendly replacements with cost, supplier, certifications, and carbon reduction %
+- **Score impact preview**: Each alternative shows the projected sustainability score improvement if that item were switched (e.g., "Score: 65 → 72 (+7)")
 
 ## Tech Stack
 
@@ -186,7 +187,7 @@ Model procurement changes before committing:
 ## AI Disclosure
 
 - **Did you use an AI assistant?** Yes (Claude Code)
-- **How did you verify suggestions?** Ran all 32 tests, manually tested the web UI including chat and what-if scenarios, verified edge cases (empty names, negative quantities, missing items, stock overuse, unknown queries, shelf life predictions, alternative suggestions, forecast caching)
+- **How did you verify suggestions?** Ran all 33 tests, manually tested the web UI including chat and what-if scenarios, verified edge cases (empty names, negative quantities, missing items, stock overuse, unknown queries, shelf life predictions, alternative suggestions, forecast caching, score impact preview)
 - **Example of a rejected/changed suggestion:** Initial design used Claude API (Haiku) for predictions. Rejected this in favor of local exponential smoothing because the core task is numerical time-series forecasting, not natural language processing - a local model is free, faster, and more appropriate for small organizations.
 
 ## Tradeoffs & Prioritization

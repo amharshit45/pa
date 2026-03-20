@@ -543,6 +543,20 @@ def test_alternatives_fuzzy_match_partial():
     assert len(res.json()["alternatives_available"]) > 0
 
 
+def test_alternatives_show_score_improvement():
+    """Switching a non-eco item to eco shows projected score improvement."""
+    client.post("/api/items", json={"name": "Whole Milk", "quantity": 10, "unit": "liters", "is_eco_certified": False})
+    client.post("/api/items", json={"name": "Eco Tea", "quantity": 10, "unit": "bags", "is_eco_certified": True})
+    res = client.get("/api/sustainability")
+    data = res.json()
+    assert len(data["alternatives_available"]) > 0
+    alt = data["alternatives_available"][0]
+    assert "projected_score" in alt
+    assert "score_improvement" in alt
+    assert alt["projected_score"] > data["overall_score"]
+    assert alt["score_improvement"] > 0
+
+
 def test_alternatives_no_false_positive():
     """Unrelated items don't falsely match alternatives."""
     client.post("/api/items", json={"name": "Printer Ink", "quantity": 5, "unit": "cartridges", "is_eco_certified": False})

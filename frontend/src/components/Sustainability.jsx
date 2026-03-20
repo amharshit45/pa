@@ -35,7 +35,14 @@ export default function Sustainability({ onLoad }) {
           <h3>Sustainable Alternatives Available</h3>
           {data.alternatives_available.map((item, i) => (
             <div key={i} style={{ marginTop: 8, padding: '12px 16px', borderLeft: '4px solid var(--ok)', background: '#f8fdf8', borderRadius: 6 }}>
-              <strong>{item.item_name}</strong> <span style={{ color: '#888' }}>(current: ${item.current_cost}/unit)</span>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span><strong>{item.item_name}</strong> <span style={{ color: '#888' }}>(current: ${item.current_cost}/unit)</span></span>
+                {item.score_improvement > 0 && (
+                  <span style={{ background: '#d4edda', color: '#155724', padding: '2px 10px', borderRadius: 12, fontSize: 13, fontWeight: 600 }}>
+                    Score: {data.overall_score} → {item.projected_score} (+{item.score_improvement})
+                  </span>
+                )}
+              </div>
               {item.alternatives.map((alt, j) => (
                 <div key={j} style={{ margin: '8px 0 0 12px', fontSize: 13 }}>
                   <span style={{ fontWeight: 600 }}>{alt.alternative_name}</span> — {alt.supplier}

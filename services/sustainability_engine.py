@@ -81,11 +81,18 @@ def calculate_sustainability_score(items: list) -> dict:
     for item in items:
         alts = get_alternatives_for_item(item)
         if alts:
+            # Compute projected score if this item were switched to eco
+            projected_eco_count = eco_count + 1
+            projected_eco_pct = round(projected_eco_count / total * 100)
+            projected_overall = round((projected_eco_pct + waste_score) / 2)
+            score_improvement = projected_overall - overall
             alternatives_available.append({
                 "item_name": item.get("name"),
                 "item_id": item.get("id"),
                 "current_cost": item.get("cost_per_unit", 0),
                 "alternatives": alts,
+                "projected_score": projected_overall,
+                "score_improvement": score_improvement,
             })
 
     return {
