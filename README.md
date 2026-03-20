@@ -87,10 +87,11 @@ pa/
 |   |       +-- ItemModal.jsx     # Add/edit item form modal (incl. storage condition)
 |   |       +-- Predictions.jsx   # ML forecast cards + shelf life predictions
 |   |       +-- Sustainability.jsx # Score ring + grade dashboard + sustainable alternatives
+|   |       +-- UsageModal.jsx     # Log usage form + recent usage history
 |   |       +-- WhatIf.jsx        # Scenario simulator with comparison grid
 |   +-- dist/                 # Production build (served by FastAPI)
 +-- tests/
-|   +-- test_app.py           # 33 tests (happy paths + edge cases + forecasting + shelf life + alternatives + caching)
+|   +-- test_app.py           # 35 tests (happy paths + edge cases + forecasting + shelf life + alternatives + caching + usage history)
 +-- data/
 |   +-- sample_data.json              # 10 synthetic inventory items (with storage conditions)
 |   +-- sample_usage_logs.json        # Pre-generated 60-day usage history (static, deterministic)
@@ -129,10 +130,20 @@ Specific eco-friendly replacement suggestions for non-certified items:
 
 ### What-If Scenario Simulator
 Model procurement changes before committing:
-- **Reduce usage**: "What if I reduce coffee orders by 20%?" -> Shows waste/cost/carbon impact
+- **Reduce usage**: "What if I reduce coffee usage by 20%?" -> Shows waste/cost/carbon impact
+- **Reduce order**: "What if I order 30% less milk?" -> Scales both stock and usage rate proportionally
 - **Switch supplier**: "What if I switch cups to eco-certified?" -> Uses real alternative product costs and shows sustainability score change
 - **Go all-eco**: "What if everything was eco-certified?" -> Full portfolio impact analysis with per-item alternative costs
-- Comparison grid: Baseline vs. Projected with delta indicators
+- **Smart results**: Only metrics that actually change are displayed; unchanged metrics are hidden for clarity
+- Comparison grid: Baseline vs. Projected with green/red delta indicators
+
+### Usage Tracking
+Log consumption directly from the inventory table and see predictions update in real time:
+- **"Use" button** on every item in the inventory table opens a usage logging modal
+- **Quantity validation**: Cannot log more than current stock; input validated client-side and server-side
+- **Recent usage history**: Modal displays the last 10 usage log entries (date + quantity) fetched from `GET /api/items/{id}/usage`
+- **Real-time propagation**: Logging usage decrements stock, invalidates the forecast cache, and triggers prediction recalculation
+- **Keyboard shortcut**: Press Escape to close the usage modal
 
 ### Core Flow (CRUD + Search/Filter)
 - **Create**: Add inventory items with name, category, quantity, expiry date, usage rate, supplier, storage condition, and eco-certification
@@ -187,14 +198,14 @@ Model procurement changes before committing:
 ## AI Disclosure
 
 - **Did you use an AI assistant?** Yes (Claude Code)
-- **How did you verify suggestions?** Ran all 33 tests, manually tested the web UI including chat and what-if scenarios, verified edge cases (empty names, negative quantities, missing items, stock overuse, unknown queries, shelf life predictions, alternative suggestions, forecast caching, score impact preview)
+- **How did you verify suggestions?** Ran all 35 tests, manually tested the web UI including chat and what-if scenarios, verified edge cases (empty names, negative quantities, missing items, stock overuse, unknown queries, shelf life predictions, alternative suggestions, forecast caching, score impact preview, usage tracking and history)
 - **Example of a rejected/changed suggestion:** Initial design used Claude API (Haiku) for predictions. Rejected this in favor of local exponential smoothing because the core task is numerical time-series forecasting, not natural language processing - a local model is free, faster, and more appropriate for small organizations.
 
 ## Tradeoffs & Prioritization
 
 ### What was cut
 - Visual asset scanning (photo-based inventory) - would require computer vision integration
-- Usage history charts/trends - the usage_log table exists but no visualization yet
+- Usage trend charts - usage history is viewable in the UsageModal but not yet visualized as charts
 - User authentication - not needed for MVP
 - Notifications/alerts - would need background jobs
 

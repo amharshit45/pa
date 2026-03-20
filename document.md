@@ -56,11 +56,12 @@ React SPA with tab-based navigation and shared state:
 - `**App.jsx**`: Root component managing shared `items` state, sustainability badge, and tab switching
 - `**api.js**`: Centralized API client (`fetch` wrapper with base URL and error handling)
 - `**CoPilot.jsx**`: Chat interface with message history, suggestion chips, and structured bot responses
-- `**Inventory.jsx**`: Item table with debounced search (300ms), category filter, inline actions (edit/predict/delete)
+- `**Inventory.jsx**`: Item table with debounced search (300ms), category filter, inline actions (edit/use/predict/delete)
 - `**ItemModal.jsx**`: Form modal for create/edit with client-side validation
+- `**UsageModal.jsx**`: Usage logging modal with quantity input, stock validation, recent usage history table (last 10 entries), and Escape key to close
 - `**Predictions.jsx**`: Fetches ML predictions on mount, sorts by urgency, renders forecast cards with model/method badges, trend arrows, confidence indicators, seasonality descriptions, and shelf life prediction blocks (nominal vs effective days with storage/handling factor details)
 - `**Sustainability.jsx**`: Score ring visualization, letter grade, stats row, and sustainable alternatives section showing specific eco-friendly replacement products with supplier, cost, carbon reduction %, eco-certifications, and projected score improvement badge (e.g., "Score: 65 → 72 (+7)")
-- `**WhatIf.jsx**`: Scenario form with dynamic fields, comparison grid with green/red delta indicators
+- `**WhatIf.jsx**`: Scenario form with dynamic fields, comparison grid with green/red delta indicators; smart filtering hides unchanged metrics and shows "No measurable impact" when all deltas are zero
 
 In production, FastAPI serves the built React app from `frontend/dist/`. During development, the Vite dev server runs on port 5173 with CORS allowing cross-origin API calls to port 8000.
 
@@ -321,7 +322,7 @@ Allows users to model procurement changes and see projected impact:
 Supported scenarios:
 
 - `reduce_usage`: Reduce an item's daily usage by X% (e.g., order less coffee)
-- `reduce_order`: Reduce an item's current stock by X% (e.g., smaller next order)
+- `reduce_order`: Reduce an item's current stock and daily usage rate by X% proportionally (e.g., smaller next order)
 - `switch_eco`: Switch a specific item to eco-certified (uses real alternative cost from `sustainable_alternatives.json` when available, falls back to 15% premium)
 - `all_eco`: Switch entire inventory to eco-certified (uses per-item alternative costs where available)
 
@@ -355,6 +356,7 @@ Falls back to suggestion list for unrecognized queries.
 | PUT    | `/api/items/{id}`         | Update item fields                                          |
 | DELETE | `/api/items/{id}`         | Delete item                                                 |
 | POST   | `/api/items/{id}/usage`   | Log usage (decrements quantity)                             |
+| GET    | `/api/items/{id}/usage`   | Get usage history (last 30 entries, most recent first)      |
 | GET    | `/api/items/{id}/predict` | Get forecast/rule-based prediction for item                 |
 | GET    | `/api/predictions`        | Get predictions for all items                               |
 | GET    | `/api/sustainability`     | Get sustainability dashboard data                           |
@@ -408,7 +410,7 @@ Additional runtime validation:
 
 ## Testing Strategy
 
-33 tests covering:
+35 tests covering:
 
 - **Happy paths** (8): CRUD operations, search, predictions, sustainability scoring, local forecast with usage history, what-if simulator, chat waste query
 - **Edge cases** (9): Empty names, negative quantities, nonexistent items, delete verification, stock overuse, zero usage rate predictions, forecast fallback without history, invalid what-if action, unknown chat query
@@ -417,6 +419,7 @@ Additional runtime validation:
 - **Sustainable alternatives** (4): Sustainability endpoint returns alternatives for non-eco items; items can be created with storage_condition field; chat sustainability response includes specific alternative details; score impact preview shows projected improvement per alternative
 - **Fuzzy matching** (3): Case-insensitive alternative matching ("whole milk" → "Whole Milk"); partial name matching ("Lab Gloves" → "Lab Gloves (Nitrile)"); no false positives for unrelated items ("Printer Ink")
 - **Forecast caching** (2): Cache hit returns identical results on consecutive predictions; cache invalidation on usage log produces updated forecast
+- **Usage history** (2): GET usage history returns logged entries in reverse chronological order; GET usage history for nonexistent item returns 404
 
 Tests use an isolated temporary SQLite database (`tempfile.NamedTemporaryFile`) to avoid polluting production data. The `setup_db` fixture calls `init_db()` explicitly since FastAPI's `on_event("startup")` doesn't fire with `TestClient`.
 
